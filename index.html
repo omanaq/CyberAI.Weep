@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>عبدالعزيز | CyberAI OS - نماذج ذكاء محلية</title>
-  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>عبدالعزيز | CyberAI OS - نماذج ذكاء محلية</title>
+<link href="https://omanaq.github.io/CyberAI.Weep/style.css" rel="stylesheet"/>
+<style>
     body {
       background-image: url('CyberAI-weep-main/bg_template.webp');
       background-size: cover;
@@ -158,124 +159,111 @@
       color: #fff;
     }
   </style>
-</head>
-<body>
-  <header>
-    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
-    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Wolf Logo" class="wolf-logo">
-    <h1>مرحباً بك في CyberAI OS</h1>
-    <p>نظام النماذج المحلية للذكاء الاصطناعي من <span class="gold-highlight">عبدالعزيز</span></p>
-  </header>
-
-  <nav>
-    <a href="https://omanaq.github.io/CyberAI.Weep/index.html">الرئيسية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/local-models.html">النماذج المحلية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html">دليل الإعداد</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface.html">واجهة الدردشة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface-advanced.html">الدردشة المتقدمة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/api-server.html">خادم API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/api-key-management.html">مفاتيح API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/model-manager.html">إدارة النماذج</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/tools.html">أدوات مساعدة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/about.html">من نحن</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/pages/contact.html">اتصل بنا</a>
-  </nav>
-
-  <main class="container">
-    <div id="auth-status" class="auth-status" style="display: none;">
-      <div class="user-info">
-        <div class="user-avatar" id="user-avatar">ع</div>
-        <div class="user-details">
-          <div class="user-name" id="user-name">عبدالعزيز</div>
-          <div class="user-key" id="user-key">sk_cyberai_abdulaziz_unlimited_******</div>
-        </div>
-        <div class="key-type unlimited" id="key-type">غير محدود</div>
-      </div>
-      <button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
-    </div>
-
-    <div id="auth-required" class="auth-required" style="display: none;">
-      <h3>مرحباً بك في CyberAI OS</h3>
-      <p>يرجى تسجيل الدخول للوصول إلى جميع ميزات النظام</p>
-      <a href="https://omanaq.github.io/CyberAI.Weep/login.html" class="btn">تسجيل الدخول</a>
-    </div>
-
-    <h2>نظام ذكاء اصطناعي محلي بدون مفاتيح API</h2>
-    <p>CyberAI OS هو منصة متكاملة تتيح لك تشغيل نماذج الذكاء الاصطناعي محلياً على جهازك دون الحاجة إلى مفاتيح API خارجية أو اتصال دائم بالإنترنت، مما يوفر لك:</p>
-    
-    <div class="features">
-      <div class="feature">
-        <h3>خصوصية كاملة</h3>
-        <p>بياناتك تبقى على جهازك ولا تُرسل إلى أي خوادم خارجية</p>
-      </div>
-      <div class="feature">
-        <h3>استقلالية</h3>
-        <p>لا حاجة للاشتراكات أو المفاتيح المدفوعة</p>
-      </div>
-      <div class="feature">
-        <h3>تخصيص</h3>
-        <p>إمكانية تعديل النماذج وتدريبها حسب احتياجاتك</p>
-      </div>
-    </div>
-
-    <h3>النماذج الموصى بها:</h3>
-
-    <div class="model-card">
-      <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="TinyLlama Model">
-      <h3>TinyLlama (1.1B)</h3>
-      <p>نموذج خفيف مثالي للهواتف والأجهزة محدودة الموارد</p>
-      <div class="specs">
-        <span class="spec">الحجم: ~400MB-1GB</span>
-        <span class="spec">الدقة: مناسبة للمهام البسيطة</span>
-        <span class="spec">الصيغة: GGUF</span>
-      </div>
-      <a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html#tinyllama" class="download-btn">دليل التثبيت</a>
-    </div>
-
-    <div class="model-card">
-      <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Llama 2 Model">
-      <h3>Llama 2 (7B)</h3>
-      <p>نموذج متوسط الحجم مع أداء متوازن للحواسيب المكتبية</p>
-      <div class="specs">
-        <span class="spec">الحجم: ~4GB</span>
-        <span class="spec">الدقة: جيدة للمهام المتوسطة</span>
-        <span class="spec">الصيغة: GGUF</span>
-      </div>
-      <a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html#llama2" class="download-btn">دليل التثبيت</a>
-    </div>
-
-    <h3>البدء السريع</h3>
-    <p>لتشغيل نموذج TinyLlama على جهازك، اتبع الخطوات التالية:</p>
-    <ol>
-      <li>قم بزيارة <a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html">دليل الإعداد</a> لتثبيت المتطلبات الأساسية</li>
-      <li>قم بتنزيل النموذج المكمّم من صفحة <a href="https://omanaq.github.io/CyberAI.Weep/pages/local-models.html">النماذج المحلية</a></li>
-      <li>شغّل النموذج باستخدام الأوامر الموضحة في <a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface.html">واجهة الدردشة</a></li>
-    </ol>
-
-    <h3>مقدمة عن الذكاء الاصطناعي والتعلم العميق</h3>
-    <div class="model-card">
-      <h3>الذكاء الاصطناعي</h3>
-      <p>هو مجال من مجالات علوم الحاسوب يهدف إلى تطوير أنظمة وبرامج قادرة على محاكاة الذكاء البشري وأداء المهام التي تتطلب التعلم، التفكير، والإدراك. يعتمد الذكاء الاصطناعي على الخوارزميات والبيانات لاتخاذ القرارات وحل المشكلات بطرق مشابهة للبشر.</p>
-    </div>
-
-    <div class="model-card">
-      <h3>التعلم العميق</h3>
-      <p>التعلم العميق هو أحد فروع التعلم الآلي ويعتمد على الشبكات العصبية الاصطناعية متعددة الطبقات. يتميز التعلم العميق بقدرته على التعلم التلقائي من البيانات دون الحاجة إلى برمجة صريحة، مما يجعله مثالياً لمعالجة وتحليل البيانات المعقدة.</p>
-    </div>
-  </main>
-
-  <footer>
-    <p>تابع عبدالعزيز:</p>
-    <p>
-      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+<link href="style.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"/></head>
+<body><div class="sidebar">القائمة الجانبية</div><div class="main-content">
+<header>
+<img alt="Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png" width="80"/>
+<img alt="Wolf Logo" class="wolf-logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h1>مرحباً بك في CyberAI OS</h1>
+<p>نظام النماذج المحلية للذكاء الاصطناعي من <span class="gold-highlight">عبدالعزيز</span></p>
+</header>
+<nav>
+<a href="https://omanaq.github.io/CyberAI.Weep/index.html">الرئيسية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/local-models.html">النماذج المحلية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html">دليل الإعداد</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface.html">واجهة الدردشة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface-advanced.html">الدردشة المتقدمة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/api-server.html">خادم API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/api-key-management.html">مفاتيح API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/model-manager.html">إدارة النماذج</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/tools.html">أدوات مساعدة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/about.html">من نحن</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/pages/contact.html">اتصل بنا</a>
+</nav>
+<main class="container">
+<div class="auth-status" id="auth-status" style="display: none;">
+<div class="user-info">
+<div class="user-avatar" id="user-avatar">ع</div>
+<div class="user-details">
+<div class="user-name" id="user-name">عبدالعزيز</div>
+<div class="user-key" id="user-key">sk_cyberai_abdulaziz_unlimited_******</div>
+</div>
+<div class="key-type unlimited" id="key-type">غير محدود</div>
+</div>
+<button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
+</div>
+<div class="auth-required" id="auth-required" style="display: none;">
+<h3>مرحباً بك في CyberAI OS</h3>
+<p>يرجى تسجيل الدخول للوصول إلى جميع ميزات النظام</p>
+<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/login.html">تسجيل الدخول</a>
+</div>
+<h2>نظام ذكاء اصطناعي محلي بدون مفاتيح API</h2>
+<p>CyberAI OS هو منصة متكاملة تتيح لك تشغيل نماذج الذكاء الاصطناعي محلياً على جهازك دون الحاجة إلى مفاتيح API خارجية أو اتصال دائم بالإنترنت، مما يوفر لك:</p>
+<div class="features">
+<div class="feature">
+<h3>خصوصية كاملة</h3>
+<p>بياناتك تبقى على جهازك ولا تُرسل إلى أي خوادم خارجية</p>
+</div>
+<div class="feature">
+<h3>استقلالية</h3>
+<p>لا حاجة للاشتراكات أو المفاتيح المدفوعة</p>
+</div>
+<div class="feature">
+<h3>تخصيص</h3>
+<p>إمكانية تعديل النماذج وتدريبها حسب احتياجاتك</p>
+</div>
+</div>
+<h3>النماذج الموصى بها:</h3>
+<div class="model-card">
+<img alt="TinyLlama Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h3>TinyLlama (1.1B)</h3>
+<p>نموذج خفيف مثالي للهواتف والأجهزة محدودة الموارد</p>
+<div class="specs">
+<span class="spec">الحجم: ~400MB-1GB</span>
+<span class="spec">الدقة: مناسبة للمهام البسيطة</span>
+<span class="spec">الصيغة: GGUF</span>
+</div>
+<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html#tinyllama">دليل التثبيت</a>
+</div>
+<div class="model-card">
+<img alt="Llama 2 Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h3>Llama 2 (7B)</h3>
+<p>نموذج متوسط الحجم مع أداء متوازن للحواسيب المكتبية</p>
+<div class="specs">
+<span class="spec">الحجم: ~4GB</span>
+<span class="spec">الدقة: جيدة للمهام المتوسطة</span>
+<span class="spec">الصيغة: GGUF</span>
+</div>
+<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html#llama2">دليل التثبيت</a>
+</div>
+<h3>البدء السريع</h3>
+<p>لتشغيل نموذج TinyLlama على جهازك، اتبع الخطوات التالية:</p>
+<ol>
+<li>قم بزيارة <a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html">دليل الإعداد</a> لتثبيت المتطلبات الأساسية</li>
+<li>قم بتنزيل النموذج المكمّم من صفحة <a href="https://omanaq.github.io/CyberAI.Weep/pages/local-models.html">النماذج المحلية</a></li>
+<li>شغّل النموذج باستخدام الأوامر الموضحة في <a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface.html">واجهة الدردشة</a></li>
+</ol>
+<h3>مقدمة عن الذكاء الاصطناعي والتعلم العميق</h3>
+<div class="model-card">
+<h3>الذكاء الاصطناعي</h3>
+<p>هو مجال من مجالات علوم الحاسوب يهدف إلى تطوير أنظمة وبرامج قادرة على محاكاة الذكاء البشري وأداء المهام التي تتطلب التعلم، التفكير، والإدراك. يعتمد الذكاء الاصطناعي على الخوارزميات والبيانات لاتخاذ القرارات وحل المشكلات بطرق مشابهة للبشر.</p>
+</div>
+<div class="model-card">
+<h3>التعلم العميق</h3>
+<p>التعلم العميق هو أحد فروع التعلم الآلي ويعتمد على الشبكات العصبية الاصطناعية متعددة الطبقات. يتميز التعلم العميق بقدرته على التعلم التلقائي من البيانات دون الحاجة إلى برمجة صريحة، مما يجعله مثالياً لمعالجة وتحليل البيانات المعقدة.</p>
+</div>
+</main>
+<footer>
+<p>تابع عبدالعزيز:</p>
+<p>
+<a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
       <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
       <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
-    </p>
-    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script src="https://omanaq.github.io/CyberAI.Weep/js/main.js"></script>
-  <script>
+</p>
+<p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+</footer>
+<script src="https://omanaq.github.io/CyberAI.Weep/js/main.js"></script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       // التحقق من حالة تسجيل الدخول
       const user = JSON.parse(localStorage.getItem('user'));
@@ -316,5 +304,5 @@
       }
     });
   </script>
-</body>
+</div></body>
 </html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول | CyberAI OS</title>
-  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>تسجيل الدخول | CyberAI OS</title>
+<link href="https://omanaq.github.io/CyberAI.Weep/style.css" rel="stylesheet"/>
+<style>
     body {
       background-image: url('CyberAI-weep-main/bg_template.webp');
       background-size: cover;
@@ -156,51 +157,44 @@
       transform: scale(1.1);
     }
   </style>
-</head>
-<body>
-  <div class="login-container">
-    <div class="login-header">
-      <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="CyberAI OS Logo">
-      <h1>CyberAI OS</h1>
-      <p>نظام النماذج المحلية للذكاء الاصطناعي</p>
-    </div>
-    
-    <form id="login-form">
-      <div class="form-group">
-        <label for="username">اسم المستخدم أو البريد الإلكتروني</label>
-        <input type="text" id="username" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="password">كلمة المرور</label>
-        <input type="password" id="password" required>
-      </div>
-      
-      <button type="submit" class="login-btn">تسجيل الدخول</button>
-      
-      <div class="login-options">
-        <label>
-          <input type="checkbox" id="remember"> تذكرني
+<link href="style.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"/></head>
+<body><div class="sidebar">القائمة الجانبية</div><div class="main-content">
+<div class="login-container">
+<div class="login-header">
+<img alt="CyberAI OS Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h1>CyberAI OS</h1>
+<p>نظام النماذج المحلية للذكاء الاصطناعي</p>
+</div>
+<form id="login-form">
+<div class="form-group">
+<label for="username">اسم المستخدم أو البريد الإلكتروني</label>
+<input id="username" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="password">كلمة المرور</label>
+<input id="password" required="" type="password"/>
+</div>
+<button class="login-btn" type="submit">تسجيل الدخول</button>
+<div class="login-options">
+<label>
+<input id="remember" type="checkbox"/> تذكرني
         </label>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#">نسيت كلمة المرور؟</a>
-      </div>
-    </form>
-    
-    <div class="register-link">
+<a href="https://omanaq.github.io/CyberAI.Weep/#">نسيت كلمة المرور؟</a>
+</div>
+</form>
+<div class="register-link">
       ليس لديك حساب؟ <a href="https://omanaq.github.io/CyberAI.Weep/#">إنشاء حساب جديد</a>
-    </div>
-    
-    <div class="social-login">
-      <p>أو سجل الدخول باستخدام</p>
-      <div class="social-buttons">
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="social-btn">G</a>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="social-btn">f</a>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="social-btn">in</a>
-      </div>
-    </div>
-  </div>
-
-  <script>
+</div>
+<div class="social-login">
+<p>أو سجل الدخول باستخدام</p>
+<div class="social-buttons">
+<a class="social-btn" href="https://omanaq.github.io/CyberAI.Weep/#">G</a>
+<a class="social-btn" href="https://omanaq.github.io/CyberAI.Weep/#">f</a>
+<a class="social-btn" href="https://omanaq.github.io/CyberAI.Weep/#">in</a>
+</div>
+</div>
+</div>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       const loginForm = document.getElementById('login-form');
       
@@ -256,5 +250,5 @@
       }
     });
   </script>
-</body>
+</div></body>
 </html>

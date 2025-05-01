@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>مولّد صفحات السكربتات</title>
-  <style>
+<meta charset="utf-8"/>
+<title>مولّد صفحات السكربتات</title>
+<style>
     body { background-color: #000; color: #ff0033; font-family: monospace; padding: 20px; }
     input, textarea {
       width: 100%; margin-bottom: 10px; padding: 10px;
@@ -16,18 +17,17 @@
     .output { margin-top: 20px; white-space: pre-wrap; background: #111; padding: 15px; }
     footer { margin-top: 40px; font-size: 0.8em; color: #777; text-align: center; }
   </style>
-</head>
-<body>
-  <h1>مولّد صفحات السكربتات</h1>
-  <input type="text" id="title" placeholder="عنوان السكربت">
-  <input type="text" id="desc" placeholder="وصف السكربت">
-  <textarea id="code" rows="10" placeholder="ألصق السكربت هنا..."></textarea>
-  <button onclick="generate()">أنشئ الصفحة</button>
-  <button onclick="sendToTelegram()">أرسل لتليجرام</button>
-  <div class="output" id="output"></div>
-  <footer>تم الإنشاء تلقائيًا بواسطة المِزّة - عبدالعزيز | الأمن السيبراني</footer>
-
-  <script>
+<link href="style.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"/></head>
+<body><div class="sidebar">القائمة الجانبية</div><div class="main-content">
+<h1>مولّد صفحات السكربتات</h1>
+<input id="title" placeholder="عنوان السكربت" type="text"/>
+<input id="desc" placeholder="وصف السكربت" type="text"/>
+<textarea id="code" placeholder="ألصق السكربت هنا..." rows="10"></textarea>
+<button onclick="generate()">أنشئ الصفحة</button>
+<button onclick="sendToTelegram()">أرسل لتليجرام</button>
+<div class="output" id="output"></div>
+<footer>تم الإنشاء تلقائيًا بواسطة المِزّة - عبدالعزيز | الأمن السيبراني</footer>
+<script>
     function generate() {
       const title = document.getElementById("title").value;
       const desc = document.getElementById("desc").value;
@@ -61,5 +61,5 @@ footer { margin-top: 40px; font-size: 0.8em; color: #777; text-align: center; }
       // لاحقًا يتم الربط مع API أو webhook
     }
   </script>
-</body>
+</div></body>
 </html>
