@@ -7,8 +7,13 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 echo -e "${BLUE}بدء إعداد CyberAI OS الكامل...${NC}"
-apt update && apt install -y curl git wget unzip
-
+pkg install -y proot-distro curl git wget unzip
+if ! proot-distro list | grep -q debian; then
+    echo -e "${YELLOW}تثبيت توزيعة Debian...${NC}"
+    proot-distro install debian
+fi
+proot-distro login debian --shared-tmp -- bash << 'IN_DEBIAN'
+set -e
 apt update && apt upgrade -y
 apt install -y python3-pip python3-venv git wget unzip build-essential cmake curl
 PROJECT_DIR=\$HOME/CyberAI.Weep
