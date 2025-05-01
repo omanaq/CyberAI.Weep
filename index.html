@@ -1,308 +1,185 @@
 <!DOCTYPE html>
-
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>عبدالعزيز | CyberAI OS - نماذج ذكاء محلية</title>
-<link href="https://omanaq.github.io/CyberAI.Weep/style.css" rel="stylesheet"/>
-<style>
-    body {
-      background-image: url('CyberAI-weep-main/bg_template.webp');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-    }
-    .model-card {
-      background-color: rgba(0, 0, 0, 0.8);
-      border: 1px solid #ff0033;
-      border-radius: 10px;
-      padding: 1.5em;
-      margin: 1.5em 0;
-      transition: transform 0.3s ease;
-    }
-    .model-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(255, 0, 51, 0.3);
-    }
-    .model-card img {
-      width: 80px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-    .model-card h3 {
-      color: #ff0033;
-      margin-top: 0;
-    }
-    .model-card p {
-      color: #cccccc;
-      margin-bottom: 15px;
-    }
-    .model-card .specs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-    .model-card .spec {
-      background-color: rgba(255, 0, 51, 0.2);
-      border: 1px solid #ff0033;
-      border-radius: 15px;
-      padding: 5px 10px;
-      font-size: 0.8em;
-      color: #ff9999;
-    }
-    .model-card .download-btn {
-      background-color: #ff0033;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 8px 15px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-    .model-card .download-btn:hover {
-      background-color: #cc0000;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 2em 0;
-    }
-    .feature {
-      background-color: rgba(0, 0, 0, 0.7);
-      border: 1px solid #ff0033;
-      border-radius: 10px;
-      padding: 1.5em;
-      text-align: center;
-    }
-    .feature h3 {
-      color: #ff0033;
-    }
-    .feature p {
-      color: #cccccc;
-    }
-    .gold-highlight {
-      color: #d4af37;
-      font-weight: bold;
-    }
-    .wolf-logo {
-      max-width: 120px;
-      margin: 0 auto 20px;
-      display: block;
-    }
-    .auth-status {
-      background-color: rgba(0, 0, 0, 0.7);
-      border: 1px solid #d4af37;
-      border-radius: 10px;
-      padding: 1em;
-      margin-bottom: 2em;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .auth-status .user-info {
-      display: flex;
-      align-items: center;
-    }
-    .auth-status .user-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #333;
-      margin-left: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #fff;
-      border: 2px solid #d4af37;
-    }
-    .auth-status .user-details {
-      line-height: 1.2;
-    }
-    .auth-status .user-name {
-      font-weight: bold;
-      color: #d4af37;
-    }
-    .auth-status .user-key {
-      font-size: 0.8em;
-      color: #ccc;
-    }
-    .auth-status .key-type {
-      padding: 3px 8px;
-      border-radius: 10px;
-      font-size: 0.8em;
-      margin-right: 10px;
-    }
-    .auth-status .key-type.unlimited {
-      background-color: #d4af37;
-      color: #000;
-    }
-    .auth-status .key-type.free {
-      background-color: #ff0033;
-      color: #fff;
-    }
-    .auth-status .logout-btn {
-      background-color: transparent;
-      border: 1px solid #ff0033;
-      color: #ff0033;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .auth-status .logout-btn:hover {
-      background-color: #ff0033;
-      color: #fff;
-    }
-  </style>
-<link href="style.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"/></head>
-<body><div class="sidebar">القائمة الجانبية</div><div class="main-content">
-<header>
-<img alt="Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png" width="80"/>
-<img alt="Wolf Logo" class="wolf-logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
-<h1>مرحباً بك في CyberAI OS</h1>
-<p>نظام النماذج المحلية للذكاء الاصطناعي من <span class="gold-highlight">عبدالعزيز</span></p>
-</header>
-<nav>
-<a href="https://omanaq.github.io/CyberAI.Weep/index.html">الرئيسية</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/local-models.html">النماذج المحلية</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html">دليل الإعداد</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface.html">واجهة الدردشة</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface-advanced.html">الدردشة المتقدمة</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/api-server.html">خادم API</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/api-key-management.html">مفاتيح API</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/model-manager.html">إدارة النماذج</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/tools.html">أدوات مساعدة</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/about.html">من نحن</a>
-<a href="https://omanaq.github.io/CyberAI.Weep/pages/contact.html">اتصل بنا</a>
-</nav>
-<main class="container">
-<div class="auth-status" id="auth-status" style="display: none;">
-<div class="user-info">
-<div class="user-avatar" id="user-avatar">ع</div>
-<div class="user-details">
-<div class="user-name" id="user-name">عبدالعزيز</div>
-<div class="user-key" id="user-key">sk_cyberai_abdulaziz_unlimited_******</div>
-</div>
-<div class="key-type unlimited" id="key-type">غير محدود</div>
-</div>
-<button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
-</div>
-<div class="auth-required" id="auth-required" style="display: none;">
-<h3>مرحباً بك في CyberAI OS</h3>
-<p>يرجى تسجيل الدخول للوصول إلى جميع ميزات النظام</p>
-<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/login.html">تسجيل الدخول</a>
-</div>
-<h2>نظام ذكاء اصطناعي محلي بدون مفاتيح API</h2>
-<p>CyberAI OS هو منصة متكاملة تتيح لك تشغيل نماذج الذكاء الاصطناعي محلياً على جهازك دون الحاجة إلى مفاتيح API خارجية أو اتصال دائم بالإنترنت، مما يوفر لك:</p>
-<div class="features">
-<div class="feature">
-<h3>خصوصية كاملة</h3>
-<p>بياناتك تبقى على جهازك ولا تُرسل إلى أي خوادم خارجية</p>
-</div>
-<div class="feature">
-<h3>استقلالية</h3>
-<p>لا حاجة للاشتراكات أو المفاتيح المدفوعة</p>
-</div>
-<div class="feature">
-<h3>تخصيص</h3>
-<p>إمكانية تعديل النماذج وتدريبها حسب احتياجاتك</p>
-</div>
-</div>
-<h3>النماذج الموصى بها:</h3>
-<div class="model-card">
-<img alt="TinyLlama Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
-<h3>TinyLlama (1.1B)</h3>
-<p>نموذج خفيف مثالي للهواتف والأجهزة محدودة الموارد</p>
-<div class="specs">
-<span class="spec">الحجم: ~400MB-1GB</span>
-<span class="spec">الدقة: مناسبة للمهام البسيطة</span>
-<span class="spec">الصيغة: GGUF</span>
-</div>
-<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html#tinyllama">دليل التثبيت</a>
-</div>
-<div class="model-card">
-<img alt="Llama 2 Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
-<h3>Llama 2 (7B)</h3>
-<p>نموذج متوسط الحجم مع أداء متوازن للحواسيب المكتبية</p>
-<div class="specs">
-<span class="spec">الحجم: ~4GB</span>
-<span class="spec">الدقة: جيدة للمهام المتوسطة</span>
-<span class="spec">الصيغة: GGUF</span>
-</div>
-<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html#llama2">دليل التثبيت</a>
-</div>
-<h3>البدء السريع</h3>
-<p>لتشغيل نموذج TinyLlama على جهازك، اتبع الخطوات التالية:</p>
-<ol>
-<li>قم بزيارة <a href="https://omanaq.github.io/CyberAI.Weep/pages/setup-guide.html">دليل الإعداد</a> لتثبيت المتطلبات الأساسية</li>
-<li>قم بتنزيل النموذج المكمّم من صفحة <a href="https://omanaq.github.io/CyberAI.Weep/pages/local-models.html">النماذج المحلية</a></li>
-<li>شغّل النموذج باستخدام الأوامر الموضحة في <a href="https://omanaq.github.io/CyberAI.Weep/pages/chat-interface.html">واجهة الدردشة</a></li>
-</ol>
-<h3>مقدمة عن الذكاء الاصطناعي والتعلم العميق</h3>
-<div class="model-card">
-<h3>الذكاء الاصطناعي</h3>
-<p>هو مجال من مجالات علوم الحاسوب يهدف إلى تطوير أنظمة وبرامج قادرة على محاكاة الذكاء البشري وأداء المهام التي تتطلب التعلم، التفكير، والإدراك. يعتمد الذكاء الاصطناعي على الخوارزميات والبيانات لاتخاذ القرارات وحل المشكلات بطرق مشابهة للبشر.</p>
-</div>
-<div class="model-card">
-<h3>التعلم العميق</h3>
-<p>التعلم العميق هو أحد فروع التعلم الآلي ويعتمد على الشبكات العصبية الاصطناعية متعددة الطبقات. يتميز التعلم العميق بقدرته على التعلم التلقائي من البيانات دون الحاجة إلى برمجة صريحة، مما يجعله مثالياً لمعالجة وتحليل البيانات المعقدة.</p>
-</div>
-</main>
-<footer>
-<p>تابع عبدالعزيز:</p>
-<p>
-<a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
-      <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
-      <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
-</p>
-<p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
-</footer>
-<script src="https://omanaq.github.io/CyberAI.Weep/js/main.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // التحقق من حالة تسجيل الدخول
-      const user = JSON.parse(localStorage.getItem('user'));
-      const authStatus = document.getElementById('auth-status');
-      const authRequired = document.getElementById('auth-required');
-      
-      if (user) {
-        // المستخدم مسجل الدخول
-        authStatus.style.display = 'flex';
-        
-        // تحديث معلومات المستخدم
-        document.getElementById('user-name').textContent = user.name;
-        document.getElementById('user-avatar').textContent = user.name.charAt(0);
-        
-        // عرض جزء من مفتاح API
-        const apiKey = user.apiKey;
-        const maskedKey = apiKey.substring(0, 15) + '******';
-        document.getElementById('user-key').textContent = maskedKey;
-        
-        // تحديد نوع المفتاح
-        const keyType = document.getElementById('key-type');
-        if (user.keyType === 'unlimited') {
-          keyType.textContent = 'غير محدود';
-          keyType.className = 'key-type unlimited';
-        } else {
-          keyType.textContent = `مجاني (${user.usageCount}/${user.usageLimit})`;
-          keyType.className = 'key-type free';
-        }
-        
-        // زر تسجيل الخروج
-        document.getElementById('logout-btn').addEventListener('click', function() {
-          localStorage.removeItem('user');
-          window.location.reload();
-        });
-      } else {
-        // المستخدم غير مسجل الدخول
-        authRequired.style.display = 'block';
-      }
-    });
-  </script>
-</div></body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberAI OS - نظام ذكاء اصطناعي محلي</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="logo.png" alt="CyberAI Logo" class="logo">
+      </div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item active">الرئيسية</a>
+        <a href="local-models.html" class="nav-item">النماذج المحلية</a>
+        <a href="setup-guide.html" class="nav-item">دليل الإعداد</a>
+        <a href="chat-interface-advanced.html" class="nav-item">واجهة الدردشة</a>
+        <a href="api-server.html" class="nav-item">خادم API</a>
+        <a href="api-key-management.html" class="nav-item">مفاتيح API</a>
+        <a href="tools.html" class="nav-item">أدوات مساعدة</a>
+        <a href="about.html" class="nav-item">من نحن</a>
+        <a href="contact.html" class="nav-item">اتصل بنا</a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="https://github.com/omanaq/CyberAI.Weep" target="_blank" class="github-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="main-header">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-logo">
+          <img src="logo.png" alt="CyberAI Logo" class="logo-small">
+          <h1>CyberAI OS</h1>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <section class="hero-section">
+          <div class="hero-content">
+            <h1 class="hero-title">مرحباً بك في <span class="highlight">CyberAI OS</span></h1>
+            <p class="hero-subtitle">نظام الذكاء الاصطناعي المحلي من عبدالعزيز</p>
+            <div class="hero-description">
+              <p>منصة مفتوحة تتيح لك تشغيل نماذج الذكاء الاصطناعي محلياً على جهازك دون الحاجة إلى مفاتيح API خارجية أو اتصال دائم بالإنترنت، مما يوفر لك:</p>
+            </div>
+            <div class="cta-buttons">
+              <a href="setup-guide.html" class="btn btn-primary">دليل الإعداد</a>
+              <a href="chat-interface-advanced.html" class="btn btn-secondary">جرب المحادثة</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="logo.png" alt="CyberAI Logo" class="floating-logo">
+          </div>
+        </section>
+
+        <section class="features-section">
+          <h2 class="section-title">المميزات الرئيسية</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon privacy-icon"></div>
+              <h3>خصوصية كاملة</h3>
+              <p>بياناتك تبقى على جهازك ولا تُرسل إلى أي خوادم خارجية</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon independence-icon"></div>
+              <h3>استقلالية</h3>
+              <p>لا حاجة للاتصال بالإنترنت أو المفاتيح المدفوعة</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon customization-icon"></div>
+              <h3>تخصيص</h3>
+              <p>إمكانية تعديل النماذج وتكييفها حسب احتياجاتك</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="models-section">
+          <h2 class="section-title">النماذج الموصى بها</h2>
+          <div class="models-grid">
+            <div class="model-card">
+              <div class="model-header">
+                <img src="logo.png" alt="TinyLlama Logo" class="model-logo">
+                <h3>TinyLlama (1.1B)</h3>
+              </div>
+              <p class="model-description">نموذج خفيف مثالي للأجهزة محدودة الموارد</p>
+              <div class="model-specs">
+                <span class="model-spec">الحجم: 400MB-1GB</span>
+                <span class="model-spec">الصيغة: GGUF</span>
+              </div>
+              <a href="local-models.html#tinyllama" class="btn btn-outline">تفاصيل أكثر</a>
+            </div>
+            <div class="model-card">
+              <div class="model-header">
+                <img src="logo.png" alt="Llama 2 Logo" class="model-logo">
+                <h3>Llama 2 (7B)</h3>
+              </div>
+              <p class="model-description">نموذج متوسط الحجم مع أداء متوازن</p>
+              <div class="model-specs">
+                <span class="model-spec">الحجم: ~4GB</span>
+                <span class="model-spec">الصيغة: GGUF</span>
+              </div>
+              <a href="local-models.html#llama2" class="btn btn-outline">تفاصيل أكثر</a>
+            </div>
+            <div class="model-card">
+              <div class="model-header">
+                <img src="logo.png" alt="Mistral Logo" class="model-logo">
+                <h3>Mistral (7B)</h3>
+              </div>
+              <p class="model-description">نموذج متطور يوفر أداءً ممتازًا</p>
+              <div class="model-specs">
+                <span class="model-spec">الحجم: ~4GB</span>
+                <span class="model-spec">الصيغة: GGUF</span>
+              </div>
+              <a href="local-models.html#mistral" class="btn btn-outline">تفاصيل أكثر</a>
+            </div>
+          </div>
+          <div class="view-all-container">
+            <a href="local-models.html" class="view-all-link">عرض جميع النماذج</a>
+          </div>
+        </section>
+
+        <section class="get-started-section">
+          <h2 class="section-title">ابدأ الآن</h2>
+          <div class="steps-container">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h3>تنزيل النموذج</h3>
+              <p>اختر النموذج المناسب لجهازك وقم بتنزيله</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h3>إعداد البيئة</h3>
+              <p>قم بتثبيت البرامج اللازمة لتشغيل النموذج</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h3>تشغيل النموذج</h3>
+              <p>ابدأ استخدام النموذج عبر واجهة الدردشة أو API</p>
+            </div>
+          </div>
+          <div class="cta-container">
+            <a href="setup-guide.html" class="btn btn-primary">دليل الإعداد الكامل</a>
+          </div>
+        </section>
+      </div>
+
+      <footer class="main-footer">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="logo.png" alt="CyberAI Logo" class="logo-small">
+            <span>CyberAI OS</span>
+          </div>
+          <div class="footer-links">
+            <p>تابع عبدالعزيز:</p>
+            <div class="social-links">
+              <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a>
+              <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a>
+              <a href="mailto:abdulzizsaleme@gmail.com">Email</a>
+            </div>
+          </div>
+          <p class="copyright">© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
