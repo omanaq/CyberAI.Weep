@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>إدارة النماذج | CyberAI OS</title>
-  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إدارة النماذج | CyberAI OS</title>
+<link href="https://omanaq.github.io/CyberAI.Weep/../style.css" rel="stylesheet"/>
+<style>
     .models-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -224,100 +225,87 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
-    <h1>إدارة النماذج</h1>
-    <p>تنزيل وإدارة نماذج الذكاء الاصطناعي المحلية</p>
-  </header>
-
-  <nav>
-    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface-advanced.html">واجهة الدردشة المتقدمة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/api-key-management.html">مفاتيح API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/model-manager.html">إدارة النماذج</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
-  </nav>
-
-  <main class="container">
-    <h2>إدارة نماذج الذكاء الاصطناعي المحلية</h2>
-    <p>يمكنك تنزيل وإدارة نماذج الذكاء الاصطناعي المحلية من هذه الصفحة. اختر النموذج المناسب لجهازك واحتياجاتك.</p>
-    
-    <div class="filter-bar">
-      <select id="size-filter">
-        <option value="all">جميع الأحجام</option>
-        <option value="small">صغير (< 1GB)</option>
-        <option value="medium">متوسط (1-5GB)</option>
-        <option value="large">كبير (> 5GB)</option>
-      </select>
-      
-      <select id="status-filter">
-        <option value="all">جميع الحالات</option>
-        <option value="installed">مثبت</option>
-        <option value="not-installed">غير مثبت</option>
-      </select>
-      
-      <input type="text" id="search-input" placeholder="بحث...">
-      <button id="search-btn">بحث</button>
-    </div>
-    
-    <div class="models-grid" id="models-grid">
-      <!-- سيتم إضافة بطاقات النماذج هنا عن طريق JavaScript -->
-    </div>
-    
-    <div class="model-details" id="model-details" style="display: none;">
-      <h3 id="detail-model-name">اسم النموذج</h3>
-      
-      <div class="details-grid">
-        <div class="detail-item">
-          <h4>معلومات عامة</h4>
-          <p><strong>الحجم:</strong> <span id="detail-size">-</span></p>
-          <p><strong>التكميم:</strong> <span id="detail-quantization">-</span></p>
-          <p><strong>المسار:</strong> <span id="detail-path">-</span></p>
-        </div>
-        
-        <div class="detail-item">
-          <h4>متطلبات النظام</h4>
-          <p><strong>الذاكرة المطلوبة:</strong> <span id="detail-memory">-</span></p>
-          <p><strong>وحدة المعالجة:</strong> <span id="detail-cpu">-</span></p>
-          <p><strong>مساحة التخزين:</strong> <span id="detail-storage">-</span></p>
-        </div>
-        
-        <div class="detail-item">
-          <h4>الأداء</h4>
-          <p><strong>سرعة الاستجابة:</strong> <span id="detail-speed">-</span></p>
-          <p><strong>دقة النتائج:</strong> <span id="detail-accuracy">-</span></p>
-          <p><strong>دعم اللغة العربية:</strong> <span id="detail-arabic">-</span></p>
-        </div>
-        
-        <div class="detail-item">
-          <h4>الإجراءات</h4>
-          <div class="model-actions">
-            <button id="detail-download-btn" class="download-btn">تنزيل</button>
-            <button id="detail-delete-btn" class="manage-btn">حذف</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <p>تابع عبدالعزيز:</p>
-    <p>
-      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+<header>
+<img alt="Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png" width="80"/>
+<h1>إدارة النماذج</h1>
+<p>تنزيل وإدارة نماذج الذكاء الاصطناعي المحلية</p>
+</header>
+<nav>
+<a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/chat-interface-advanced.html">واجهة الدردشة المتقدمة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/api-key-management.html">مفاتيح API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/model-manager.html">إدارة النماذج</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+</nav>
+<main class="container">
+<h2>إدارة نماذج الذكاء الاصطناعي المحلية</h2>
+<p>يمكنك تنزيل وإدارة نماذج الذكاء الاصطناعي المحلية من هذه الصفحة. اختر النموذج المناسب لجهازك واحتياجاتك.</p>
+<div class="filter-bar">
+<select id="size-filter">
+<option value="all">جميع الأحجام</option>
+<option value="small">صغير (&lt; 1GB)</option>
+<option value="medium">متوسط (1-5GB)</option>
+<option value="large">كبير (&gt; 5GB)</option>
+</select>
+<select id="status-filter">
+<option value="all">جميع الحالات</option>
+<option value="installed">مثبت</option>
+<option value="not-installed">غير مثبت</option>
+</select>
+<input id="search-input" placeholder="بحث..." type="text"/>
+<button id="search-btn">بحث</button>
+</div>
+<div class="models-grid" id="models-grid">
+<!-- سيتم إضافة بطاقات النماذج هنا عن طريق JavaScript -->
+</div>
+<div class="model-details" id="model-details" style="display: none;">
+<h3 id="detail-model-name">اسم النموذج</h3>
+<div class="details-grid">
+<div class="detail-item">
+<h4>معلومات عامة</h4>
+<p><strong>الحجم:</strong> <span id="detail-size">-</span></p>
+<p><strong>التكميم:</strong> <span id="detail-quantization">-</span></p>
+<p><strong>المسار:</strong> <span id="detail-path">-</span></p>
+</div>
+<div class="detail-item">
+<h4>متطلبات النظام</h4>
+<p><strong>الذاكرة المطلوبة:</strong> <span id="detail-memory">-</span></p>
+<p><strong>وحدة المعالجة:</strong> <span id="detail-cpu">-</span></p>
+<p><strong>مساحة التخزين:</strong> <span id="detail-storage">-</span></p>
+</div>
+<div class="detail-item">
+<h4>الأداء</h4>
+<p><strong>سرعة الاستجابة:</strong> <span id="detail-speed">-</span></p>
+<p><strong>دقة النتائج:</strong> <span id="detail-accuracy">-</span></p>
+<p><strong>دعم اللغة العربية:</strong> <span id="detail-arabic">-</span></p>
+</div>
+<div class="detail-item">
+<h4>الإجراءات</h4>
+<div class="model-actions">
+<button class="download-btn" id="detail-download-btn">تنزيل</button>
+<button class="manage-btn" id="detail-delete-btn">حذف</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<p>تابع عبدالعزيز:</p>
+<p>
+<a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
       <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
       <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
-    </p>
-    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script src="https://omanaq.github.io/CyberAI.Weep/../js/database.js"></script>
-  <script>
+</p>
+<p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+</footer>
+<script src="https://omanaq.github.io/CyberAI.Weep/../js/database.js"></script>
+<script>
     document.addEventListener('DOMContentLoaded', async function() {
       // تهيئة قاعدة البيانات
       const db = new CyberAIDatabase();

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>النماذج المحلية | CyberAI OS</title>
-  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>النماذج المحلية | CyberAI OS</title>
+<link href="https://omanaq.github.io/CyberAI.Weep/../style.css" rel="stylesheet"/>
+<style>
     .model-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -114,139 +115,125 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
-    <h1>النماذج المحلية</h1>
-    <p>استكشف وتنزيل نماذج الذكاء الاصطناعي للتشغيل المحلي</p>
-  </header>
-
-  <nav>
-    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
-  </nav>
-
-  <main class="container">
-    <h2>استكشاف النماذج المحلية</h2>
-    <p>هنا يمكنك العثور على مجموعة من نماذج الذكاء الاصطناعي المحلية التي يمكن تشغيلها على جهازك دون الحاجة إلى مفاتيح API خارجية.</p>
-    
-    <div class="filter-bar">
-      <select id="size-filter">
-        <option value="all">جميع الأحجام</option>
-        <option value="small">صغير (< 1GB)</option>
-        <option value="medium">متوسط (1-5GB)</option>
-        <option value="large">كبير (> 5GB)</option>
-      </select>
-      
-      <select id="device-filter">
-        <option value="all">جميع الأجهزة</option>
-        <option value="mobile">هاتف محمول</option>
-        <option value="desktop">حاسوب مكتبي</option>
-        <option value="server">خادم</option>
-      </select>
-      
-      <input type="text" id="search-input" placeholder="بحث...">
-      <button id="search-btn">بحث</button>
-    </div>
-    
-    <div class="model-grid">
-      <div class="model-card" id="tinyllama">
-        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="TinyLlama Model">
-        <h3>TinyLlama (1.1B)</h3>
-        <p>نموذج خفيف مثالي للهواتف والأجهزة محدودة الموارد. يوفر أداءً جيدًا للمهام البسيطة مع استهلاك منخفض للموارد.</p>
-        <div class="specs">
-          <span class="spec">الحجم: ~400MB-1GB</span>
-          <span class="spec">الدقة: مناسبة للمهام البسيطة</span>
-          <span class="spec">الصيغة: GGUF</span>
-          <span class="spec">مناسب للهاتف</span>
-        </div>
-        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#tinyllama" class="download-btn">دليل التثبيت</a>
-      </div>
-      
-      <div class="model-card" id="llama2">
-        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Llama 2 Model">
-        <h3>Llama 2 (7B)</h3>
-        <p>نموذج متوسط الحجم مع أداء متوازن للحواسيب المكتبية. يوفر دقة عالية في الإجابات ودعم للغة العربية.</p>
-        <div class="specs">
-          <span class="spec">الحجم: ~4GB</span>
-          <span class="spec">الدقة: جيدة للمهام المتوسطة</span>
-          <span class="spec">الصيغة: GGUF</span>
-          <span class="spec">مناسب للحاسوب</span>
-        </div>
-        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#llama2" class="download-btn">دليل التثبيت</a>
-      </div>
-      
-      <div class="model-card">
-        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Mistral Model">
-        <h3>Mistral (7B)</h3>
-        <p>نموذج متطور يوفر أداءً ممتازًا مع حجم معقول. يتفوق في فهم السياق والإجابات المنطقية.</p>
-        <div class="specs">
-          <span class="spec">الحجم: ~4GB</span>
-          <span class="spec">الدقة: ممتازة</span>
-          <span class="spec">الصيغة: GGUF</span>
-          <span class="spec">مناسب للحاسوب</span>
-        </div>
-        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#mistral" class="download-btn">دليل التثبيت</a>
-      </div>
-      
-      <div class="model-card">
-        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Phi-2 Model">
-        <h3>Phi-2 (2.7B)</h3>
-        <p>نموذج صغير الحجم من Microsoft مع أداء مذهل مقارنة بحجمه. مثالي للأجهزة متوسطة المواصفات.</p>
-        <div class="specs">
-          <span class="spec">الحجم: ~1.5GB</span>
-          <span class="spec">الدقة: جيدة جدًا لحجمه</span>
-          <span class="spec">الصيغة: GGUF</span>
-          <span class="spec">مناسب للحاسوب المحمول</span>
-        </div>
-        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#phi2" class="download-btn">دليل التثبيت</a>
-      </div>
-    </div>
-    
-    <h3>كيفية اختيار النموذج المناسب</h3>
-    <p>عند اختيار نموذج للتشغيل المحلي، يجب مراعاة العوامل التالية:</p>
-    <ul>
-      <li><strong>مواصفات الجهاز:</strong> تأكد من أن جهازك يلبي الحد الأدنى من المتطلبات لتشغيل النموذج.</li>
-      <li><strong>حجم النموذج:</strong> كلما كان النموذج أكبر، كلما كان أكثر دقة ولكنه يتطلب موارد أكثر.</li>
-      <li><strong>الاستخدام:</strong> حدد ما إذا كنت تحتاج إلى النموذج للمهام البسيطة أو المعقدة.</li>
-      <li><strong>اللغة:</strong> تأكد من أن النموذج يدعم اللغة العربية إذا كنت تنوي استخدامه باللغة العربية.</li>
-    </ul>
-    
-    <h3>صيغ النماذج</h3>
-    <p>تتوفر النماذج بعدة صيغ، أهمها:</p>
-    <ul>
-      <li><strong>GGUF:</strong> صيغة حديثة تحل محل GGML، وهي مثالية للتشغيل المحلي مع llama.cpp.</li>
-      <li><strong>ONNX:</strong> صيغة مفتوحة المصدر تسمح بتشغيل النماذج على مختلف الأنظمة.</li>
-      <li><strong>PyTorch:</strong> صيغة أصلية للنماذج، تستخدم غالبًا للتدريب وليس للاستخدام النهائي.</li>
-    </ul>
-    
-    <h3>التكميم (Quantization)</h3>
-    <p>التكميم هو عملية تقليل دقة الأوزان في النموذج لتقليل حجمه واستهلاك الذاكرة. الخيارات الشائعة تشمل:</p>
-    <ul>
-      <li><strong>Q4_K_M:</strong> تكميم 4-بت مع دقة معقولة وحجم صغير.</li>
-      <li><strong>Q5_K_M:</strong> تكميم 5-بت، توازن جيد بين الدقة والحجم.</li>
-      <li><strong>Q8_0:</strong> تكميم 8-بت، دقة أعلى ولكن حجم أكبر.</li>
-      <li><strong>F16:</strong> دقة كاملة، أفضل أداء ولكن أكبر حجمًا.</li>
-    </ul>
-  </main>
-
-  <footer>
-    <p>تابع عبدالعزيز:</p>
-    <p>
-      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+<header>
+<img alt="Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png" width="80"/>
+<h1>النماذج المحلية</h1>
+<p>استكشف وتنزيل نماذج الذكاء الاصطناعي للتشغيل المحلي</p>
+</header>
+<nav>
+<a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+</nav>
+<main class="container">
+<h2>استكشاف النماذج المحلية</h2>
+<p>هنا يمكنك العثور على مجموعة من نماذج الذكاء الاصطناعي المحلية التي يمكن تشغيلها على جهازك دون الحاجة إلى مفاتيح API خارجية.</p>
+<div class="filter-bar">
+<select id="size-filter">
+<option value="all">جميع الأحجام</option>
+<option value="small">صغير (&lt; 1GB)</option>
+<option value="medium">متوسط (1-5GB)</option>
+<option value="large">كبير (&gt; 5GB)</option>
+</select>
+<select id="device-filter">
+<option value="all">جميع الأجهزة</option>
+<option value="mobile">هاتف محمول</option>
+<option value="desktop">حاسوب مكتبي</option>
+<option value="server">خادم</option>
+</select>
+<input id="search-input" placeholder="بحث..." type="text"/>
+<button id="search-btn">بحث</button>
+</div>
+<div class="model-grid">
+<div class="model-card" id="tinyllama">
+<img alt="TinyLlama Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h3>TinyLlama (1.1B)</h3>
+<p>نموذج خفيف مثالي للهواتف والأجهزة محدودة الموارد. يوفر أداءً جيدًا للمهام البسيطة مع استهلاك منخفض للموارد.</p>
+<div class="specs">
+<span class="spec">الحجم: ~400MB-1GB</span>
+<span class="spec">الدقة: مناسبة للمهام البسيطة</span>
+<span class="spec">الصيغة: GGUF</span>
+<span class="spec">مناسب للهاتف</span>
+</div>
+<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#tinyllama">دليل التثبيت</a>
+</div>
+<div class="model-card" id="llama2">
+<img alt="Llama 2 Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h3>Llama 2 (7B)</h3>
+<p>نموذج متوسط الحجم مع أداء متوازن للحواسيب المكتبية. يوفر دقة عالية في الإجابات ودعم للغة العربية.</p>
+<div class="specs">
+<span class="spec">الحجم: ~4GB</span>
+<span class="spec">الدقة: جيدة للمهام المتوسطة</span>
+<span class="spec">الصيغة: GGUF</span>
+<span class="spec">مناسب للحاسوب</span>
+</div>
+<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#llama2">دليل التثبيت</a>
+</div>
+<div class="model-card">
+<img alt="Mistral Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h3>Mistral (7B)</h3>
+<p>نموذج متطور يوفر أداءً ممتازًا مع حجم معقول. يتفوق في فهم السياق والإجابات المنطقية.</p>
+<div class="specs">
+<span class="spec">الحجم: ~4GB</span>
+<span class="spec">الدقة: ممتازة</span>
+<span class="spec">الصيغة: GGUF</span>
+<span class="spec">مناسب للحاسوب</span>
+</div>
+<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#mistral">دليل التثبيت</a>
+</div>
+<div class="model-card">
+<img alt="Phi-2 Model" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<h3>Phi-2 (2.7B)</h3>
+<p>نموذج صغير الحجم من Microsoft مع أداء مذهل مقارنة بحجمه. مثالي للأجهزة متوسطة المواصفات.</p>
+<div class="specs">
+<span class="spec">الحجم: ~1.5GB</span>
+<span class="spec">الدقة: جيدة جدًا لحجمه</span>
+<span class="spec">الصيغة: GGUF</span>
+<span class="spec">مناسب للحاسوب المحمول</span>
+</div>
+<a class="download-btn" href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#phi2">دليل التثبيت</a>
+</div>
+</div>
+<h3>كيفية اختيار النموذج المناسب</h3>
+<p>عند اختيار نموذج للتشغيل المحلي، يجب مراعاة العوامل التالية:</p>
+<ul>
+<li><strong>مواصفات الجهاز:</strong> تأكد من أن جهازك يلبي الحد الأدنى من المتطلبات لتشغيل النموذج.</li>
+<li><strong>حجم النموذج:</strong> كلما كان النموذج أكبر، كلما كان أكثر دقة ولكنه يتطلب موارد أكثر.</li>
+<li><strong>الاستخدام:</strong> حدد ما إذا كنت تحتاج إلى النموذج للمهام البسيطة أو المعقدة.</li>
+<li><strong>اللغة:</strong> تأكد من أن النموذج يدعم اللغة العربية إذا كنت تنوي استخدامه باللغة العربية.</li>
+</ul>
+<h3>صيغ النماذج</h3>
+<p>تتوفر النماذج بعدة صيغ، أهمها:</p>
+<ul>
+<li><strong>GGUF:</strong> صيغة حديثة تحل محل GGML، وهي مثالية للتشغيل المحلي مع llama.cpp.</li>
+<li><strong>ONNX:</strong> صيغة مفتوحة المصدر تسمح بتشغيل النماذج على مختلف الأنظمة.</li>
+<li><strong>PyTorch:</strong> صيغة أصلية للنماذج، تستخدم غالبًا للتدريب وليس للاستخدام النهائي.</li>
+</ul>
+<h3>التكميم (Quantization)</h3>
+<p>التكميم هو عملية تقليل دقة الأوزان في النموذج لتقليل حجمه واستهلاك الذاكرة. الخيارات الشائعة تشمل:</p>
+<ul>
+<li><strong>Q4_K_M:</strong> تكميم 4-بت مع دقة معقولة وحجم صغير.</li>
+<li><strong>Q5_K_M:</strong> تكميم 5-بت، توازن جيد بين الدقة والحجم.</li>
+<li><strong>Q8_0:</strong> تكميم 8-بت، دقة أعلى ولكن حجم أكبر.</li>
+<li><strong>F16:</strong> دقة كاملة، أفضل أداء ولكن أكبر حجمًا.</li>
+</ul>
+</main>
+<footer>
+<p>تابع عبدالعزيز:</p>
+<p>
+<a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
       <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
       <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
-    </p>
-    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
-  <script>
+</p>
+<p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+</footer>
+<script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       // تنفيذ وظائف التصفية والبحث
       const searchBtn = document.getElementById('search-btn');

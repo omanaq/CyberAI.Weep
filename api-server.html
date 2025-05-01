@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>خادم API | CyberAI OS</title>
-  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>خادم API | CyberAI OS</title>
+<link href="https://omanaq.github.io/CyberAI.Weep/../style.css" rel="stylesheet"/>
+<style>
     .api-section {
       background-color: rgba(0, 0, 0, 0.7);
       border: 1px solid #333;
@@ -188,102 +189,91 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
-    <h1>خادم API</h1>
-    <p>واجهة برمجة التطبيقات للنماذج المحلية</p>
-  </header>
-
-  <nav>
-    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
-  </nav>
-
-  <main class="container">
-    <h2>خادم API للنماذج المحلية</h2>
-    <p>يوفر خادم API واجهة برمجية متوافقة مع OpenAI للتفاعل مع نماذج الذكاء الاصطناعي المحلية. يمكنك استخدام هذه الواجهة لدمج النماذج المحلية في تطبيقاتك.</p>
-    
-    <div class="api-section">
-      <h3>بدء تشغيل خادم API</h3>
-      <p>لتشغيل خادم API المحلي، اتبع الخطوات التالية:</p>
-      
-      <ol>
-        <li>تأكد من تثبيت llama-cpp-python كما هو موضح في <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a></li>
-        <li>قم بتشغيل الخادم باستخدام الأمر التالي:</li>
-      </ol>
-      
-      <div class="code-block">
-        <pre>python -m llama_cpp.server --model path/to/model.gguf --host 127.0.0.1 --port 8000</pre>
-        <button class="copy-btn">نسخ</button>
-      </div>
-      
-      <p>بعد تشغيل الخادم، يمكنك الوصول إلى واجهة API على العنوان: <code>http://127.0.0.1:8000/</code></p>
-    </div>
-    
-    <div class="api-section">
-      <h3>نقاط النهاية (Endpoints)</h3>
-      <p>يوفر خادم API النقاط التالية:</p>
-      
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="endpoint-method">POST</span>
-          <span class="endpoint-url">/v1/completions</span>
-        </div>
-        <p>إنشاء إكمال نصي للنص المعطى.</p>
-        
-        <h4>معلمات الطلب:</h4>
-        <table class="parameter-table">
-          <thead>
-            <tr>
-              <th>المعلمة</th>
-              <th>النوع</th>
-              <th>الوصف</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="required-badge">مطلوب</span> prompt</td>
-              <td><span class="parameter-type">string</span></td>
-              <td>النص المراد إكماله</td>
-            </tr>
-            <tr>
-              <td><span class="optional-badge">اختياري</span> max_tokens</td>
-              <td><span class="parameter-type">integer</span></td>
-              <td>الحد الأقصى لعدد الرموز في الإكمال (الافتراضي: 16)</td>
-            </tr>
-            <tr>
-              <td><span class="optional-badge">اختياري</span> temperature</td>
-              <td><span class="parameter-type">number</span></td>
-              <td>درجة العشوائية في الإكمال (0-2، الافتراضي: 0.8)</td>
-            </tr>
-            <tr>
-              <td><span class="optional-badge">اختياري</span> top_p</td>
-              <td><span class="parameter-type">number</span></td>
-              <td>احتمالية النواة المستخدمة في أخذ العينات (0-1، الافتراضي: 0.95)</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <h4>مثال على الطلب:</h4>
-        <div class="code-block">
-          <pre>{
+<header>
+<img alt="Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png" width="80"/>
+<h1>خادم API</h1>
+<p>واجهة برمجة التطبيقات للنماذج المحلية</p>
+</header>
+<nav>
+<a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+</nav>
+<main class="container">
+<h2>خادم API للنماذج المحلية</h2>
+<p>يوفر خادم API واجهة برمجية متوافقة مع OpenAI للتفاعل مع نماذج الذكاء الاصطناعي المحلية. يمكنك استخدام هذه الواجهة لدمج النماذج المحلية في تطبيقاتك.</p>
+<div class="api-section">
+<h3>بدء تشغيل خادم API</h3>
+<p>لتشغيل خادم API المحلي، اتبع الخطوات التالية:</p>
+<ol>
+<li>تأكد من تثبيت llama-cpp-python كما هو موضح في <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a></li>
+<li>قم بتشغيل الخادم باستخدام الأمر التالي:</li>
+</ol>
+<div class="code-block">
+<pre>python -m llama_cpp.server --model path/to/model.gguf --host 127.0.0.1 --port 8000</pre>
+<button class="copy-btn">نسخ</button>
+</div>
+<p>بعد تشغيل الخادم، يمكنك الوصول إلى واجهة API على العنوان: <code>http://127.0.0.1:8000/</code></p>
+</div>
+<div class="api-section">
+<h3>نقاط النهاية (Endpoints)</h3>
+<p>يوفر خادم API النقاط التالية:</p>
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="endpoint-method">POST</span>
+<span class="endpoint-url">/v1/completions</span>
+</div>
+<p>إنشاء إكمال نصي للنص المعطى.</p>
+<h4>معلمات الطلب:</h4>
+<table class="parameter-table">
+<thead>
+<tr>
+<th>المعلمة</th>
+<th>النوع</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="required-badge">مطلوب</span> prompt</td>
+<td><span class="parameter-type">string</span></td>
+<td>النص المراد إكماله</td>
+</tr>
+<tr>
+<td><span class="optional-badge">اختياري</span> max_tokens</td>
+<td><span class="parameter-type">integer</span></td>
+<td>الحد الأقصى لعدد الرموز في الإكمال (الافتراضي: 16)</td>
+</tr>
+<tr>
+<td><span class="optional-badge">اختياري</span> temperature</td>
+<td><span class="parameter-type">number</span></td>
+<td>درجة العشوائية في الإكمال (0-2، الافتراضي: 0.8)</td>
+</tr>
+<tr>
+<td><span class="optional-badge">اختياري</span> top_p</td>
+<td><span class="parameter-type">number</span></td>
+<td>احتمالية النواة المستخدمة في أخذ العينات (0-1، الافتراضي: 0.95)</td>
+</tr>
+</tbody>
+</table>
+<h4>مثال على الطلب:</h4>
+<div class="code-block">
+<pre>{
   "prompt": "مرحباً، كيف حالك؟",
   "max_tokens": 512,
   "temperature": 0.7,
   "top_p": 0.9
 }</pre>
-          <button class="copy-btn">نسخ</button>
-        </div>
-        
-        <h4>مثال على الاستجابة:</h4>
-        <div class="code-block">
-          <pre>{
+<button class="copy-btn">نسخ</button>
+</div>
+<h4>مثال على الاستجابة:</h4>
+<div class="code-block">
+<pre>{
   "id": "cmpl-123456",
   "object": "text_completion",
   "created": 1677858242,
@@ -302,53 +292,50 @@
     "total_tokens": 20
   }
 }</pre>
-          <button class="copy-btn">نسخ</button>
-        </div>
-      </div>
-      
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="endpoint-method">POST</span>
-          <span class="endpoint-url">/v1/chat/completions</span>
-        </div>
-        <p>إنشاء إكمال محادثة للرسائل المعطاة.</p>
-        
-        <h4>معلمات الطلب:</h4>
-        <table class="parameter-table">
-          <thead>
-            <tr>
-              <th>المعلمة</th>
-              <th>النوع</th>
-              <th>الوصف</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="required-badge">مطلوب</span> messages</td>
-              <td><span class="parameter-type">array</span></td>
-              <td>مصفوفة من كائنات الرسائل، كل منها يحتوي على "role" و "content"</td>
-            </tr>
-            <tr>
-              <td><span class="optional-badge">اختياري</span> max_tokens</td>
-              <td><span class="parameter-type">integer</span></td>
-              <td>الحد الأقصى لعدد الرموز في الإكمال (الافتراضي: 16)</td>
-            </tr>
-            <tr>
-              <td><span class="optional-badge">اختياري</span> temperature</td>
-              <td><span class="parameter-type">number</span></td>
-              <td>درجة العشوائية في الإكمال (0-2، الافتراضي: 0.8)</td>
-            </tr>
-            <tr>
-              <td><span class="optional-badge">اختياري</span> top_p</td>
-              <td><span class="parameter-type">number</span></td>
-              <td>احتمالية النواة المستخدمة في أخذ العينات (0-1، الافتراضي: 0.95)</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <h4>مثال على الطلب:</h4>
-        <div class="code-block">
-          <pre>{
+<button class="copy-btn">نسخ</button>
+</div>
+</div>
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="endpoint-method">POST</span>
+<span class="endpoint-url">/v1/chat/completions</span>
+</div>
+<p>إنشاء إكمال محادثة للرسائل المعطاة.</p>
+<h4>معلمات الطلب:</h4>
+<table class="parameter-table">
+<thead>
+<tr>
+<th>المعلمة</th>
+<th>النوع</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="required-badge">مطلوب</span> messages</td>
+<td><span class="parameter-type">array</span></td>
+<td>مصفوفة من كائنات الرسائل، كل منها يحتوي على "role" و "content"</td>
+</tr>
+<tr>
+<td><span class="optional-badge">اختياري</span> max_tokens</td>
+<td><span class="parameter-type">integer</span></td>
+<td>الحد الأقصى لعدد الرموز في الإكمال (الافتراضي: 16)</td>
+</tr>
+<tr>
+<td><span class="optional-badge">اختياري</span> temperature</td>
+<td><span class="parameter-type">number</span></td>
+<td>درجة العشوائية في الإكمال (0-2، الافتراضي: 0.8)</td>
+</tr>
+<tr>
+<td><span class="optional-badge">اختياري</span> top_p</td>
+<td><span class="parameter-type">number</span></td>
+<td>احتمالية النواة المستخدمة في أخذ العينات (0-1، الافتراضي: 0.95)</td>
+</tr>
+</tbody>
+</table>
+<h4>مثال على الطلب:</h4>
+<div class="code-block">
+<pre>{
   "messages": [
     {"role": "system", "content": "أنت مساعد مفيد."},
     {"role": "user", "content": "ما هو الذكاء الاصطناعي؟"}
@@ -356,12 +343,11 @@
   "max_tokens": 512,
   "temperature": 0.7
 }</pre>
-          <button class="copy-btn">نسخ</button>
-        </div>
-        
-        <h4>مثال على الاستجابة:</h4>
-        <div class="code-block">
-          <pre>{
+<button class="copy-btn">نسخ</button>
+</div>
+<h4>مثال على الاستجابة:</h4>
+<div class="code-block">
+<pre>{
   "id": "chatcmpl-123456",
   "object": "chat.completion",
   "created": 1677858242,
@@ -382,36 +368,31 @@
     "total_tokens": 60
   }
 }</pre>
-          <button class="copy-btn">نسخ</button>
-        </div>
-      </div>
-    </div>
-    
-    <div class="api-section">
-      <h3>اختبار API</h3>
-      <p>يمكنك استخدام النموذج أدناه لاختبار طلبات API:</p>
-      
-      <div class="api-tester">
-        <h4>إرسال طلب إلى /v1/completions</h4>
-        <textarea id="request-body">{
+<button class="copy-btn">نسخ</button>
+</div>
+</div>
+</div>
+<div class="api-section">
+<h3>اختبار API</h3>
+<p>يمكنك استخدام النموذج أدناه لاختبار طلبات API:</p>
+<div class="api-tester">
+<h4>إرسال طلب إلى /v1/completions</h4>
+<textarea id="request-body">{
   "prompt": "مرحباً، كيف حالك؟",
   "max_tokens": 512,
   "temperature": 0.7,
   "top_p": 0.9
 }</textarea>
-        <button id="send-request">إرسال الطلب</button>
-        
-        <div id="response-container" class="response-container" style="display: none;"></div>
-      </div>
-    </div>
-    
-    <div class="api-section">
-      <h3>دمج API في تطبيقاتك</h3>
-      <p>يمكنك دمج واجهة API المحلية في تطبيقاتك باستخدام أي لغة برمجة تدعم طلبات HTTP. إليك بعض الأمثلة:</p>
-      
-      <h4>JavaScript (Fetch API):</h4>
-      <div class="code-block">
-        <pre>async function generateCompletion(prompt) {
+<button id="send-request">إرسال الطلب</button>
+<div class="response-container" id="response-container" style="display: none;"></div>
+</div>
+</div>
+<div class="api-section">
+<h3>دمج API في تطبيقاتك</h3>
+<p>يمكنك دمج واجهة API المحلية في تطبيقاتك باستخدام أي لغة برمجة تدعم طلبات HTTP. إليك بعض الأمثلة:</p>
+<h4>JavaScript (Fetch API):</h4>
+<div class="code-block">
+<pre>async function generateCompletion(prompt) {
   const response = await fetch('http://localhost:8000/v1/completions', {
     method: 'POST',
     headers: {
@@ -430,14 +411,13 @@
 
 // استخدام الدالة
 generateCompletion('مرحباً، كيف حالك؟')
-  .then(text => console.log(text))
-  .catch(error => console.error('Error:', error));</pre>
-        <button class="copy-btn">نسخ</button>
-      </div>
-      
-      <h4>Python (Requests):</h4>
-      <div class="code-block">
-        <pre>import requests
+  .then(text =&gt; console.log(text))
+  .catch(error =&gt; console.error('Error:', error));</pre>
+<button class="copy-btn">نسخ</button>
+</div>
+<h4>Python (Requests):</h4>
+<div class="code-block">
+<pre>import requests
 
 def generate_completion(prompt):
     response = requests.post(
@@ -454,23 +434,21 @@ def generate_completion(prompt):
 # استخدام الدالة
 text = generate_completion('مرحباً، كيف حالك؟')
 print(text)</pre>
-        <button class="copy-btn">نسخ</button>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <p>تابع عبدالعزيز:</p>
-    <p>
-      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+<button class="copy-btn">نسخ</button>
+</div>
+</div>
+</main>
+<footer>
+<p>تابع عبدالعزيز:</p>
+<p>
+<a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
       <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
       <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
-    </p>
-    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
-  <script>
+</p>
+<p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+</footer>
+<script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       // إضافة أزرار نسخ لكتل الكود
       const codeBlocks = document.querySelectorAll('.code-block');

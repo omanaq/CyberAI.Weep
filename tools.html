@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أدوات مساعدة | CyberAI OS</title>
-  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>أدوات مساعدة | CyberAI OS</title>
+<link href="https://omanaq.github.io/CyberAI.Weep/../style.css" rel="stylesheet"/>
+<style>
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -61,94 +62,82 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
-    <h1>أدوات مساعدة</h1>
-    <p>مجموعة من الأدوات المساعدة لتسهيل العمل مع النماذج المحلية</p>
-  </header>
-
-  <nav>
-    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/api-key-management.html">مفاتيح API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
-  </nav>
-
-  <main class="container">
-    <h2>أدوات مساعدة للنماذج المحلية</h2>
-    <p>مجموعة من الأدوات المساعدة التي تسهل عملية تثبيت وتشغيل واستخدام النماذج المحلية للذكاء الاصطناعي.</p>
-    
-    <div class="tools-grid">
-      <div class="tool-card">
-        <div class="tool-icon">🔄</div>
-        <h3>محول صيغ النماذج</h3>
-        <p>أداة لتحويل النماذج بين الصيغ المختلفة مثل GGUF وONNX وPyTorch.</p>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="btn">استخدام الأداة</a>
-      </div>
-      
-      <div class="tool-card">
-        <div class="tool-icon">⚙️</div>
-        <h3>مولد أوامر llama.cpp</h3>
-        <p>أداة لإنشاء أوامر llama.cpp بناءً على الإعدادات المطلوبة.</p>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="btn">استخدام الأداة</a>
-      </div>
-      
-      <div class="tool-card">
-        <div class="tool-icon">📊</div>
-        <h3>مراقب أداء النموذج</h3>
-        <p>أداة لمراقبة أداء النموذج وقياس سرعة الاستجابة واستهلاك الموارد.</p>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="btn">استخدام الأداة</a>
-      </div>
-      
-      <div class="tool-card">
-        <div class="tool-icon">📝</div>
-        <h3>محرر النصوص البرمجية</h3>
-        <p>محرر نصوص برمجية مع دعم للتكميل التلقائي باستخدام النماذج المحلية.</p>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="btn">استخدام الأداة</a>
-      </div>
-      
-      <div class="tool-card">
-        <div class="tool-icon">🔍</div>
-        <h3>مقارنة النماذج</h3>
-        <p>أداة لمقارنة أداء النماذج المختلفة على نفس المهام.</p>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="btn">استخدام الأداة</a>
-      </div>
-      
-      <div class="tool-card">
-        <div class="tool-icon">📦</div>
-        <h3>مدير التنزيلات</h3>
-        <p>أداة لتنزيل النماذج من مصادر مختلفة مع دعم استئناف التنزيل.</p>
-        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="btn">استخدام الأداة</a>
-      </div>
-    </div>
-    
-    <h3>أدوات الطرف الثالث الموصى بها</h3>
-    <p>هناك العديد من الأدوات المفتوحة المصدر التي يمكن أن تساعدك في العمل مع النماذج المحلية:</p>
-    
-    <ul>
-      <li><strong>LM Studio</strong> - واجهة مستخدم رسومية لتشغيل النماذج المحلية</li>
-      <li><strong>text-generation-webui</strong> - واجهة ويب متقدمة للتفاعل مع النماذج</li>
-      <li><strong>Ollama</strong> - أداة لتشغيل النماذج المحلية بسهولة</li>
-      <li><strong>LocalAI</strong> - بديل مفتوح المصدر لواجهة OpenAI API</li>
-      <li><strong>GPT4All</strong> - تطبيق سطح مكتب للتفاعل مع النماذج المحلية</li>
-    </ul>
-  </main>
-
-  <footer>
-    <p>تابع عبدالعزيز:</p>
-    <p>
-      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+<header>
+<img alt="Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png" width="80"/>
+<h1>أدوات مساعدة</h1>
+<p>مجموعة من الأدوات المساعدة لتسهيل العمل مع النماذج المحلية</p>
+</header>
+<nav>
+<a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/api-key-management.html">مفاتيح API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+</nav>
+<main class="container">
+<h2>أدوات مساعدة للنماذج المحلية</h2>
+<p>مجموعة من الأدوات المساعدة التي تسهل عملية تثبيت وتشغيل واستخدام النماذج المحلية للذكاء الاصطناعي.</p>
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-icon">🔄</div>
+<h3>محول صيغ النماذج</h3>
+<p>أداة لتحويل النماذج بين الصيغ المختلفة مثل GGUF وONNX وPyTorch.</p>
+<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/#">استخدام الأداة</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">⚙️</div>
+<h3>مولد أوامر llama.cpp</h3>
+<p>أداة لإنشاء أوامر llama.cpp بناءً على الإعدادات المطلوبة.</p>
+<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/#">استخدام الأداة</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">📊</div>
+<h3>مراقب أداء النموذج</h3>
+<p>أداة لمراقبة أداء النموذج وقياس سرعة الاستجابة واستهلاك الموارد.</p>
+<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/#">استخدام الأداة</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">📝</div>
+<h3>محرر النصوص البرمجية</h3>
+<p>محرر نصوص برمجية مع دعم للتكميل التلقائي باستخدام النماذج المحلية.</p>
+<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/#">استخدام الأداة</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">🔍</div>
+<h3>مقارنة النماذج</h3>
+<p>أداة لمقارنة أداء النماذج المختلفة على نفس المهام.</p>
+<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/#">استخدام الأداة</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">📦</div>
+<h3>مدير التنزيلات</h3>
+<p>أداة لتنزيل النماذج من مصادر مختلفة مع دعم استئناف التنزيل.</p>
+<a class="btn" href="https://omanaq.github.io/CyberAI.Weep/#">استخدام الأداة</a>
+</div>
+</div>
+<h3>أدوات الطرف الثالث الموصى بها</h3>
+<p>هناك العديد من الأدوات المفتوحة المصدر التي يمكن أن تساعدك في العمل مع النماذج المحلية:</p>
+<ul>
+<li><strong>LM Studio</strong> - واجهة مستخدم رسومية لتشغيل النماذج المحلية</li>
+<li><strong>text-generation-webui</strong> - واجهة ويب متقدمة للتفاعل مع النماذج</li>
+<li><strong>Ollama</strong> - أداة لتشغيل النماذج المحلية بسهولة</li>
+<li><strong>LocalAI</strong> - بديل مفتوح المصدر لواجهة OpenAI API</li>
+<li><strong>GPT4All</strong> - تطبيق سطح مكتب للتفاعل مع النماذج المحلية</li>
+</ul>
+</main>
+<footer>
+<p>تابع عبدالعزيز:</p>
+<p>
+<a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
       <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
       <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
-    </p>
-    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+</p>
+<p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+</footer>
+<script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
 </body>
 </html>

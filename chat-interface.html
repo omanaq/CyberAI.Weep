@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>واجهة الدردشة | CyberAI OS</title>
-  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>واجهة الدردشة | CyberAI OS</title>
+<link href="https://omanaq.github.io/CyberAI.Weep/../style.css" rel="stylesheet"/>
+<style>
     .chat-container {
       display: flex;
       flex-direction: column;
@@ -210,149 +211,136 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
-    <h1>واجهة الدردشة</h1>
-    <p>تفاعل مع نماذج الذكاء الاصطناعي المحلية</p>
-  </header>
-
-  <nav>
-    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
-    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
-  </nav>
-
-  <main class="container">
-    <h2>واجهة الدردشة مع النماذج المحلية</h2>
-    <p>استخدم هذه الواجهة للتفاعل مع نماذج الذكاء الاصطناعي المحلية. تأكد من تشغيل خادم API المحلي أولاً كما هو موضح في <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>.</p>
-    
-    <div class="chat-container">
-      <div class="chat-header">
-        <h3>
-          <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Bot Avatar">
-          <span>TinyLlama Chat</span>
-        </h3>
-        <div class="model-info">النموذج: TinyLlama 1.1B</div>
-        <div class="status">
-          <span id="status-text">غير متصل</span>
-          <div class="status-indicator status-offline" id="status-indicator"></div>
-        </div>
-      </div>
-      
-      <div class="chat-messages" id="chat-messages">
-        <div class="message bot-message">
+<header>
+<img alt="Logo" src="https://omanaq.github.io/CyberAI.Weep/logo.png" width="80"/>
+<h1>واجهة الدردشة</h1>
+<p>تفاعل مع نماذج الذكاء الاصطناعي المحلية</p>
+</header>
+<nav>
+<a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+<a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+</nav>
+<main class="container">
+<h2>واجهة الدردشة مع النماذج المحلية</h2>
+<p>استخدم هذه الواجهة للتفاعل مع نماذج الذكاء الاصطناعي المحلية. تأكد من تشغيل خادم API المحلي أولاً كما هو موضح في <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>.</p>
+<div class="chat-container">
+<div class="chat-header">
+<h3>
+<img alt="Bot Avatar" src="https://omanaq.github.io/CyberAI.Weep/logo.png"/>
+<span>TinyLlama Chat</span>
+</h3>
+<div class="model-info">النموذج: TinyLlama 1.1B</div>
+<div class="status">
+<span id="status-text">غير متصل</span>
+<div class="status-indicator status-offline" id="status-indicator"></div>
+</div>
+</div>
+<div class="chat-messages" id="chat-messages">
+<div class="message bot-message">
           مرحباً! أنا نموذج TinyLlama المحلي. كيف يمكنني مساعدتك اليوم؟
           <div class="message-time">12:00</div>
-        </div>
-      </div>
-      
-      <div class="chat-input">
-        <input type="text" id="user-input" placeholder="اكتب رسالتك هنا..." disabled>
-        <button id="send-btn" disabled>إرسال</button>
-      </div>
-    </div>
-    
-    <div class="settings-panel">
-      <h3>إعدادات النموذج</h3>
-      
-      <div class="settings-group">
-        <h4>إعدادات الاتصال</h4>
-        <div class="settings-row">
-          <label for="api-url">عنوان API:</label>
-          <input type="text" id="api-url" value="http://localhost:8000" style="flex-grow: 1; padding: 0.5em; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 3px;">
-        </div>
-        <div class="settings-row">
-          <label for="model-path">مسار النموذج:</label>
-          <input type="text" id="model-path" value="./tinyllama.gguf" style="flex-grow: 1; padding: 0.5em; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 3px;">
-        </div>
-        <button id="connect-btn" style="margin-top: 10px;">اتصال</button>
-      </div>
-      
-      <div class="settings-group">
-        <h4>معلمات النموذج</h4>
-        <div class="settings-row">
-          <label for="temperature">درجة الحرارة:</label>
-          <span class="value-display" id="temperature-value">0.7</span>
-          <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7">
-        </div>
-        <div class="settings-row">
-          <label for="max-tokens">الحد الأقصى للرموز:</label>
-          <input type="number" id="max-tokens" min="10" max="2048" value="512">
-        </div>
-        <div class="settings-row">
-          <label for="top-p">Top P:</label>
-          <span class="value-display" id="top-p-value">0.9</span>
-          <input type="range" id="top-p" min="0" max="1" step="0.05" value="0.9">
-        </div>
-        <div class="settings-row">
-          <label for="context-size">حجم السياق:</label>
-          <select id="context-size">
-            <option value="512">512 (خفيف)</option>
-            <option value="1024">1024 (متوسط)</option>
-            <option value="2048">2048 (كامل)</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    
-    <h3>استخدام واجهة API</h3>
-    <p>يمكنك أيضًا التفاعل مع النموذج المحلي عبر واجهة API باستخدام طلبات HTTP:</p>
-    
-    <div class="api-info">
-      <h4>مثال على طلب API:</h4>
-      <code>
-POST http://localhost:8000/v1/completions<br>
-Content-Type: application/json<br><br>
-{<br>
-&nbsp;&nbsp;"prompt": "مرحباً، كيف حالك؟",<br>
-&nbsp;&nbsp;"max_tokens": 512,<br>
-&nbsp;&nbsp;"temperature": 0.7,<br>
-&nbsp;&nbsp;"top_p": 0.9<br>
+</div>
+</div>
+<div class="chat-input">
+<input disabled="" id="user-input" placeholder="اكتب رسالتك هنا..." type="text"/>
+<button disabled="" id="send-btn">إرسال</button>
+</div>
+</div>
+<div class="settings-panel">
+<h3>إعدادات النموذج</h3>
+<div class="settings-group">
+<h4>إعدادات الاتصال</h4>
+<div class="settings-row">
+<label for="api-url">عنوان API:</label>
+<input id="api-url" style="flex-grow: 1; padding: 0.5em; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 3px;" type="text" value="http://localhost:8000"/>
+</div>
+<div class="settings-row">
+<label for="model-path">مسار النموذج:</label>
+<input id="model-path" style="flex-grow: 1; padding: 0.5em; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 3px;" type="text" value="./tinyllama.gguf"/>
+</div>
+<button id="connect-btn" style="margin-top: 10px;">اتصال</button>
+</div>
+<div class="settings-group">
+<h4>معلمات النموذج</h4>
+<div class="settings-row">
+<label for="temperature">درجة الحرارة:</label>
+<span class="value-display" id="temperature-value">0.7</span>
+<input id="temperature" max="2" min="0" step="0.1" type="range" value="0.7"/>
+</div>
+<div class="settings-row">
+<label for="max-tokens">الحد الأقصى للرموز:</label>
+<input id="max-tokens" max="2048" min="10" type="number" value="512"/>
+</div>
+<div class="settings-row">
+<label for="top-p">Top P:</label>
+<span class="value-display" id="top-p-value">0.9</span>
+<input id="top-p" max="1" min="0" step="0.05" type="range" value="0.9"/>
+</div>
+<div class="settings-row">
+<label for="context-size">حجم السياق:</label>
+<select id="context-size">
+<option value="512">512 (خفيف)</option>
+<option value="1024">1024 (متوسط)</option>
+<option value="2048">2048 (كامل)</option>
+</select>
+</div>
+</div>
+</div>
+<h3>استخدام واجهة API</h3>
+<p>يمكنك أيضًا التفاعل مع النموذج المحلي عبر واجهة API باستخدام طلبات HTTP:</p>
+<div class="api-info">
+<h4>مثال على طلب API:</h4>
+<code>
+POST http://localhost:8000/v1/completions<br/>
+Content-Type: application/json<br/><br/>
+{<br/>
+  "prompt": "مرحباً، كيف حالك؟",<br/>
+  "max_tokens": 512,<br/>
+  "temperature": 0.7,<br/>
+  "top_p": 0.9<br/>
 }
       </code>
-      
-      <h4>مثال على الاستجابة:</h4>
-      <code>
-{<br>
-&nbsp;&nbsp;"id": "cmpl-123456",<br>
-&nbsp;&nbsp;"object": "text_completion",<br>
-&nbsp;&nbsp;"created": 1677858242,<br>
-&nbsp;&nbsp;"model": "tinyllama.gguf",<br>
-&nbsp;&nbsp;"choices": [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"text": "مرحباً! أنا بخير، شكراً على سؤالك. كيف يمكنني مساعدتك اليوم؟",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"index": 0,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"logprobs": null,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"finish_reason": "stop"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;],<br>
-&nbsp;&nbsp;"usage": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"prompt_tokens": 5,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"completion_tokens": 15,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"total_tokens": 20<br>
-&nbsp;&nbsp;}<br>
+<h4>مثال على الاستجابة:</h4>
+<code>
+{<br/>
+  "id": "cmpl-123456",<br/>
+  "object": "text_completion",<br/>
+  "created": 1677858242,<br/>
+  "model": "tinyllama.gguf",<br/>
+  "choices": [<br/>
+    {<br/>
+      "text": "مرحباً! أنا بخير، شكراً على سؤالك. كيف يمكنني مساعدتك اليوم؟",<br/>
+      "index": 0,<br/>
+      "logprobs": null,<br/>
+      "finish_reason": "stop"<br/>
+    }<br/>
+  ],<br/>
+  "usage": {<br/>
+    "prompt_tokens": 5,<br/>
+    "completion_tokens": 15,<br/>
+    "total_tokens": 20<br/>
+  }<br/>
 }
       </code>
-    </div>
-  </main>
-
-  <footer>
-    <p>تابع عبدالعزيز:</p>
-    <p>
-      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+</div>
+</main>
+<footer>
+<p>تابع عبدالعزيز:</p>
+<p>
+<a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
       <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
       <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
-    </p>
-    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
-  <script>
+</p>
+<p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+</footer>
+<script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       // عناصر واجهة المستخدم
       const chatMessages = document.getElementById('chat-messages');
@@ -518,5 +506,27 @@ Content-Type: application/json<br><br>
       }
     });
   </script>
+
+<!-- نموذج JotForm -->
+<div style="margin-top: 2em;">
+<iframe id="JotFormIFrame-01968c6defcf7368982b5b01f954299d4734" title="Wl: Software Developer"
+  onload="window.parent.scrollTo(0,0)" allowtransparency="true"
+  allow="geolocation; microphone; camera; fullscreen"
+  src="https://agent.jotform.com/01968c6defcf7368982b5b01f954299d4734?embedMode=iframe&background=1&shadow=1"
+  frameborder="0" style="
+    min-width:100%;
+    max-width:100%;
+    height:688px;
+    border:none;
+    width:100%;
+  " scrolling="no">
+</iframe>
+<script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+<script>
+  window.jotformEmbedHandler("iframe[id='JotFormIFrame-01968c6defcf7368982b5b01f954299d4734']",
+    "https://www.jotform.com")
+</script>
+</div>
+
 </body>
 </html>
