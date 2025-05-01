@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>واجهة الدردشة المتقدمة | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #333;
+    }
+    
+    .top-bar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .top-bar .logo img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+    
+    .top-bar .logo .model-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    .top-bar .menu-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .chat-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .chat-messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .message {
+      max-width: 80%;
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border-radius: 15px;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .user-message {
+      background-color: rgba(255, 0, 51, 0.2);
+      border: 1px solid #ff0033;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .bot-message {
+      background-color: rgba(30, 30, 30, 0.8);
+      border: 1px solid #333;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .thinking-message {
+      background-color: rgba(50, 50, 50, 0.5);
+      border: 1px solid #444;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+      font-style: italic;
+    }
+    
+    .search-result {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #555;
+      padding: 0.8rem;
+      border-radius: 10px;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .search-result h4 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: #ff0033;
+    }
+    
+    .search-result p {
+      margin: 0;
+      color: #ccc;
+    }
+    
+    .search-result .source {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.5rem;
+    }
+    
+    .message-time {
+      font-size: 0.7rem;
+      color: #999;
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+    }
+    
+    .input-area {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-top: 1px solid #333;
+    }
+    
+    .input-container {
+      display: flex;
+      align-items: center;
+      background-color: #111;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .input-container input {
+      flex-grow: 1;
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 0.5rem;
+      outline: none;
+      font-size: 1rem;
+    }
+    
+    .input-container button {
+      background: none;
+      border: none;
+      color: #ff0033;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: transform 0.2s;
+    }
+    
+    .input-container button:hover {
+      transform: scale(1.1);
+    }
+    
+    .action-buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+    
+    .action-button {
+      background-color: rgba(30, 30, 30, 0.8);
+      border: 1px solid #444;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background-color 0.2s;
+    }
+    
+    .action-button:hover {
+      background-color: rgba(255, 0, 51, 0.2);
+    }
+    
+    .action-button i {
+      font-size: 1.2rem;
+    }
+    
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: #666;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .empty-state .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 2rem;
+      opacity: 0.5;
+    }
+    
+    .empty-state h3 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .empty-state p {
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+    
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+    
+    .suggestion {
+      background-color: rgba(30, 30, 30, 0.8);
+      border: 1px solid #444;
+      border-radius: 15px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .suggestion:hover {
+      background-color: rgba(255, 0, 51, 0.2);
+    }
+    
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 80%;
+      max-width: 300px;
+      height: 100%;
+      background-color: rgba(20, 20, 20, 0.95);
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+    
+    .menu-overlay.active {
+      transform: translateX(0);
+    }
+    
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #333;
+    }
+    
+    .menu-header h3 {
+      margin: 0;
+    }
+    
+    .menu-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .menu-content {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    
+    .menu-section {
+      margin-bottom: 2rem;
+    }
+    
+    .menu-section h4 {
+      color: #ff0033;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5rem;
+    }
+    
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .menu-item:hover {
+      background-color: rgba(255, 0, 51, 0.1);
+    }
+    
+    .menu-item i {
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      color: #ff0033;
+    }
+    
+    .model-selector {
+      background-color: rgba(30, 30, 30, 0.8);
+      border: 1px solid #444;
+      border-radius: 5px;
+      padding: 0.5rem;
+      width: 100%;
+      color: #fff;
+      margin-top: 0.5rem;
+    }
+    
+    .switch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    
+    .switch-label {
+      flex-grow: 1;
+    }
+    
+    .switch-toggle {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    
+    .switch-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #333;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+      background-color: #ff0033;
+    }
+    
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none;
+    }
+    
+    .overlay.active {
+      display: block;
+    }
+    
+    /* Typing indicator */
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+    
+    .typing-indicator span {
+      height: 8px;
+      width: 8px;
+      background-color: #ff0033;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 2px;
+      opacity: 0.6;
+    }
+    
+    .typing-indicator span:nth-child(1) {
+      animation: pulse 1s infinite;
+    }
+    
+    .typing-indicator span:nth-child(2) {
+      animation: pulse 1s infinite 0.2s;
+    }
+    
+    .typing-indicator span:nth-child(3) {
+      animation: pulse 1s infinite 0.4s;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Bot Avatar">
+      <span class="model-name" id="current-model-name">CyberAI Chat</span>
+    </div>
+    <button class="menu-btn" id="menu-btn">☰</button>
+  </div>
+  
+  <div class="chat-container">
+    <div class="chat-messages" id="chat-messages">
+      <div class="empty-state" id="empty-state">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" class="logo">
+        <h3>مرحباً بك في CyberAI Chat</h3>
+        <p>يمكنك التفاعل مع نماذج الذكاء الاصطناعي المحلية، والبحث في الويب، واستخدام ميزة التفكير العميق.</p>
+        <div class="suggestions">
+          <div class="suggestion">كيف يمكنني تثبيت نموذج TinyLlama؟</div>
+          <div class="suggestion">ابحث عن آخر تقنيات الذكاء الاصطناعي</div>
+          <div class="suggestion">ما هي أفضل النماذج المحلية للأجهزة الضعيفة؟</div>
+          <div class="suggestion">كيف أقوم بإعداد خادم API؟</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="input-area">
+      <div class="input-container">
+        <input type="text" id="user-input" placeholder="اسأل عن أي شيء...">
+        <button id="send-btn">↑</button>
+      </div>
+      <div class="action-buttons">
+        <button class="action-button" id="think-btn">
+          <i>🧠</i> تفكير عميق
+        </button>
+        <button class="action-button" id="search-btn">
+          <i>🔍</i> بحث متقدم
+        </button>
+        <button class="action-button" id="clear-btn">
+          <i>🗑️</i> مسح المحادثة
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="overlay" id="overlay"></div>
+  
+  <div class="menu-overlay" id="menu-overlay">
+    <div class="menu-header">
+      <h3>الإعدادات</h3>
+      <button class="menu-close" id="menu-close">✕</button>
+    </div>
+    <div class="menu-content">
+      <div class="menu-section">
+        <h4>النموذج المحلي</h4>
+        <div class="menu-item">
+          <i>📋</i>
+          <div>
+            <div>اختر النموذج</div>
+            <select class="model-selector" id="model-selector">
+              <option value="tinyllama">TinyLlama (1.1B)</option>
+              <option value="llama2">Llama 2 (7B)</option>
+              <option value="mistral">Mistral (7B)</option>
+              <option value="phi2">Phi-2 (2.7B)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-section">
+        <h4>الميزات المتقدمة</h4>
+        <div class="switch">
+          <div class="switch-label">البحث في الويب</div>
+          <label class="switch-toggle">
+            <input type="checkbox" id="web-search-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="switch">
+          <div class="switch-label">التفكير العميق</div>
+          <label class="switch-toggle">
+            <input type="checkbox" id="deep-thinking-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="switch">
+          <div class="switch-label">حفظ المحادثات</div>
+          <label class="switch-toggle">
+            <input type="checkbox" id="save-chats-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="menu-section">
+        <h4>معلمات النموذج</h4>
+        <div class="menu-item">
+          <i>🔥</i>
+          <div>
+            <div>درجة الحرارة: <span id="temperature-value">0.7</span></div>
+            <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7" style="width: 100%">
+          </div>
+        </div>
+        <div class="menu-item">
+          <i>📏</i>
+          <div>
+            <div>الحد الأقصى للرموز: <span id="max-tokens-value">512</span></div>
+            <input type="range" id="max-tokens" min="64" max="2048" step="64" value="512" style="width: 100%">
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-section">
+        <h4>الاتصال بقاعدة البيانات</h4>
+        <div class="menu-item" id="db-status-item">
+          <i>🔌</i>
+          <div>
+            <div>حالة الاتصال</div>
+            <div id="db-status">غير متصل</div>
+          </div>
+        </div>
+        <div class="menu-item" id="connect-db-item">
+          <i>📊</i>
+          <div>اتصال بقاعدة البيانات</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // عناصر واجهة المستخدم
+      const chatMessages = document.getElementById('chat-messages');
+      const userInput = document.getElementById('user-input');
+      const sendBtn = document.getElementById('send-btn');
+      const thinkBtn = document.getElementById('think-btn');
+      const searchBtn = document.getElementById('search-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const menuBtn = document.getElementById('menu-btn');
+      const menuOverlay = document.getElementById('menu-overlay');
+      const menuClose = document.getElementById('menu-close');
+      const overlay = document.getElementById('overlay');
+      const emptyState = document.getElementById('empty-state');
+      const suggestions = document.querySelectorAll('.suggestion');
+      const modelSelector = document.getElementById('model-selector');
+      const currentModelName = document.getElementById('current-model-name');
+      const temperatureSlider = document.getElementById('temperature');
+      const temperatureValue = document.getElementById('temperature-value');
+      const maxTokensSlider = document.getElementById('max-tokens');
+      const maxTokensValue = document.getElementById('max-tokens-value');
+      const webSearchToggle = document.getElementById('web-search-toggle');
+      const deepThinkingToggle = document.getElementById('deep-thinking-toggle');
+      const saveChatsToggle = document.getElementById('save-chats-toggle');
+      const dbStatusItem = document.getElementById('db-status-item');
+      const connectDbItem = document.getElementById('connect-db-item');
+      const dbStatus = document.getElementById('db-status');
+      
+      // حالة التطبيق
+      let chatHistory = [];
+      let isThinking = false;
+      let dbConnected = false;
+      
+      // إعدادات النموذج
+      const modelSettings = {
+        model: 'tinyllama',
+        temperature: 0.7,
+        maxTokens: 512,
+        webSearch: true,
+        deepThinking: true,
+        saveChats: true
+      };
+      
+      // قاعدة بيانات محلية (IndexedDB)
+      let db;
+      
+      // تهيئة قاعدة البيانات
+      function initDatabase() {
+        const request = indexedDB.open('CyberAIChat', 1);
+        
+        request.onerror = function(event) {
+          console.error('فشل في فتح قاعدة البيانات:', event.target.error);
+        };
+        
+        request.onupgradeneeded = function(event) {
+          const db = event.target.result;
+          
+          // إنشاء مخزن للمحادثات
+          if (!db.objectStoreNames.contains('chats')) {
+            db.createObjectStore('chats', { keyPath: 'id', autoIncrement: true });
+          }
+          
+          // إنشاء مخزن للنماذج
+          if (!db.objectStoreNames.contains('models')) {
+            const modelsStore = db.createObjectStore('models', { keyPath: 'id' });
+            
+            // إضافة بعض النماذج الافتراضية
+            modelsStore.add({
+              id: 'tinyllama',
+              name: 'TinyLlama (1.1B)',
+              path: './models/tinyllama.gguf',
+              size: '400MB',
+              installed: true
+            });
+            
+            modelsStore.add({
+              id: 'llama2',
+              name: 'Llama 2 (7B)',
+              path: './models/llama2.gguf',
+              size: '4GB',
+              installed: false
+            });
+            
+            modelsStore.add({
+              id: 'mistral',
+              name: 'Mistral (7B)',
+              path: './models/mistral.gguf',
+              size: '4GB',
+              installed: false
+            });
+            
+            modelsStore.add({
+              id: 'phi2',
+              name: 'Phi-2 (2.7B)',
+              path: './models/phi2.gguf',
+              size: '1.5GB',
+              installed: false
+            });
+          }
+        };
+        
+        request.onsuccess = function(event) {
+          db = event.target.result;
+          console.log('تم فتح قاعدة البيانات بنجاح');
+          
+          // تحديث حالة الاتصال
+          dbConnected = true;
+          dbStatus.textContent = 'متصل';
+          dbStatus.style.color = '#0f0';
+          
+          // استرجاع آخر محادثة
+          loadLastChat();
+        };
+      }
+      
+      // حفظ المحادثة الحالية
+      function saveChat() {
+        if (!db || !modelSettings.saveChats) return;
+        
+        const transaction = db.transaction(['chats'], 'readwrite');
+        const store = transaction.objectStore('chats');
+        
+        const chat = {
+          timestamp: new Date().toISOString(),
+          model: modelSettings.model,
+          messages: chatHistory
+        };
+        
+        store.add(chat);
+      }
+      
+      // تحميل آخر محادثة
+      function loadLastChat() {
+        if (!db || !modelSettings.saveChats) return;
+        
+        const transaction = db.transaction(['chats'], 'readonly');
+        const store = transaction.objectStore('chats');
+        
+        // الحصول على آخر محادثة (أعلى معرف)
+        const request = store.openCursor(null, 'prev');
+        
+        request.onsuccess = function(event) {
+          const cursor = event.target.result;
+          if (cursor) {
+            // وجدنا آخر محادثة
+            chatHistory = cursor.value.messages;
+            
+            // عرض المحادثة
+            if (chatHistory.length > 0) {
+              emptyState.style.display = 'none';
+              chatHistory.forEach(message => {
+                if (message.role === 'user') {
+                  addUserMessage(message.content);
+                } else if (message.role === 'assistant') {
+                  addBotMessage(message.content);
+                } else if (message.role === 'thinking') {
+                  addThinkingMessage(message.content);
+                } else if (message.role === 'search') {
+                  addSearchResults(message.content);
+                }
+              });
+            }
+          }
+        };
+      }
+      
+      // تهيئة قاعدة البيانات
+      initDatabase();
+      
+      // إضافة رسالة المستخدم
+      function addUserMessage(text) {
+        if (emptyState.style.display !== 'none') {
+          emptyState.style.display = 'none';
+        }
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message user-message';
+        messageDiv.textContent = text;
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = getCurrentTime();
+        
+        messageDiv.appendChild(timeDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // إضافة إلى سجل المحادثة
+        chatHistory.push({ role: 'user', content: text });
+        
+        // التمرير إلى أسفل
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // حفظ المحادثة
+        if (modelSettings.saveChats) {
+          saveChat();
+        }
+      }
+      
+      // إضافة رسالة البوت
+      function addBotMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot-message';
+        messageDiv.textContent = text;
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = getCurrentTime();
+        
+        messageDiv.appendChild(timeDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // إضافة إلى سجل المحادثة
+        chatHistory.push({ role: 'assistant', content: text });
+        
+        // التمرير إلى أسفل
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // حفظ المحادثة
+        if (modelSettings.saveChats) {
+          saveChat();
+        }
+      }
+      
+      // إضافة رسالة تفكير
+      function addThinkingMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message thinking-message';
+        messageDiv.textContent = text;
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = getCurrentTime();
+        
+        messageDiv.appendChild(timeDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // إضافة إلى سجل المحادثة
+        chatHistory.push({ role: 'thinking', content: text });
+        
+        // التمرير إلى أسفل
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // حفظ المحادثة
+        if (modelSettings.saveChats) {
+          saveChat();
+        }
+      }
+      
+      // إضافة نتائج البحث
+      function addSearchResults(results) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot-message';
+        messageDiv.textContent = 'وجدت بعض النتائج من الويب:';
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = getCurrentTime();
+        
+        messageDiv.appendChild(timeDiv);
+        
+        // إضافة نتائج البحث
+        results.forEach(result => {
+          const resultDiv = document.createElement('div');
+          resultDiv.className = 'search-result';
+          
+          const titleEl = document.createElement('h4');
+          titleEl.textContent = result.title;
+          
+          const contentEl = document.createElement('p');
+          contentEl.textContent = result.content;
+          
+          const sourceEl = document.createElement('div');
+          sourceEl.className = 'source';
+          sourceEl.textContent = result.source;
+          
+          resultDiv.appendChild(titleEl);
+          resultDiv.appendChild(contentEl);
+          resultDiv.appendChild(sourceEl);
+          
+          messageDiv.appendChild(resultDiv);
+        });
+        
+        chatMessages.appendChild(messageDiv);
+        
+        // إضافة إلى سجل المحادثة
+        chatHistory.push({ role: 'search', content: results });
+        
+        // التمرير إلى أسفل
+        role: 'search', content: results});
+        
+        // التمرير إلى أسفل
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // حفظ المحادثة
+        if (modelSettings.saveChats) {
+          saveChat();
+        }
+      }
+      
+      // إضافة مؤشر الكتابة
+      function addTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot-message';
+        typingDiv.id = 'typing-indicator';
+        
+        const indicator = document.createElement('div');
+        indicator.className = 'typing-indicator';
+        
+        for (let i = 0; i < 3; i++) {
+          const dot = document.createElement('span');
+          indicator.appendChild(dot);
+        }
+        
+        typingDiv.appendChild(indicator);
+        chatMessages.appendChild(typingDiv);
+        
+        // التمرير إلى أسفل
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      // إزالة مؤشر الكتابة
+      function removeTypingIndicator() {
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) {
+          chatMessages.removeChild(typingIndicator);
+        }
+      }
+      
+      // إرسال رسالة
+      function sendMessage() {
+        const message = userInput.value.trim();
+        if (message === '' || isThinking) return;
+        
+        // إضافة رسالة المستخدم
+        addUserMessage(message);
+        
+        // مسح حقل الإدخال
+        userInput.value = '';
+        
+        // إضافة مؤشر الكتابة
+        addTypingIndicator();
+        
+        // محاكاة استجابة النموذج
+        setTimeout(() => {
+          removeTypingIndicator();
+          
+          // إذا كان البحث في الويب مفعل، نقوم بالبحث أولاً
+          if (modelSettings.webSearch && message.includes('ابحث') || message.includes('بحث')) {
+            simulateWebSearch(message);
+          }
+          
+          // إذا كان التفكير العميق مفعل، نقوم بإضافة رسالة تفكير
+          if (modelSettings.deepThinking) {
+            isThinking = true;
+            addThinkingMessage('أفكر في إجابة مناسبة... أحلل السؤال وأبحث عن المعلومات ذات الصلة.');
+            
+            setTimeout(() => {
+              simulateBotResponse(message);
+              isThinking = false;
+            }, 2000);
+          } else {
+            simulateBotResponse(message);
+          }
+        }, 1000);
+      }
+      
+      // محاكاة البحث في الويب
+      function simulateWebSearch(query) {
+        // محاكاة نتائج البحث
+        const searchResults = [
+          {
+            title: 'تثبيت وتشغيل نماذج الذكاء الاصطناعي المحلية',
+            content: 'دليل شامل لتثبيت وتشغيل نماذج الذكاء الاصطناعي المحلية مثل TinyLlama وLlama 2 على جهازك الشخصي بدون الحاجة إلى اتصال بالإنترنت.',
+            source: 'blog.cyberai.com/local-models-guide'
+          },
+          {
+            title: 'مقارنة بين النماذج المحلية للذكاء الاصطناعي',
+            content: 'مقارنة شاملة بين النماذج المختلفة من حيث الحجم والأداء واستهلاك الموارد، لمساعدتك في اختيار النموذج المناسب لجهازك.',
+            source: 'ai-comparison.org/local-models'
+          },
+          {
+            title: 'إعداد خادم API للنماذج المحلية',
+            content: 'شرح خطوة بخطوة لإعداد خادم API متوافق مع OpenAI للنماذج المحلية باستخدام llama.cpp وPython.',
+            source: 'github.com/llama-cpp-python/docs'
+          }
+        ];
+        
+        // إضافة نتائج البحث
+        addSearchResults(searchResults);
+      }
+      
+      // محاكاة استجابة النموذج
+      function simulateBotResponse(userMessage) {
+        // إنشاء استجابة بسيطة
+        let response = '';
+        
+        if (userMessage.includes('مرحبا') || userMessage.includes('أهلا')) {
+          response = 'مرحباً! أنا مساعد CyberAI المحلي. كيف يمكنني مساعدتك اليوم؟';
+        } else if (userMessage.includes('كيف') && userMessage.includes('تثبيت')) {
+          response = 'لتثبيت نموذج محلي مثل TinyLlama، اتبع الخطوات التالية:\n\n1. قم بتنزيل النموذج المكمّم بصيغة GGUF من Hugging Face\n2. قم بتثبيت llama.cpp أو أي واجهة أخرى متوافقة\n3. قم بتشغيل النموذج باستخدام الأمر المناسب\n\nيمكنك الاطلاع على دليل مفصل في صفحة "دليل الإعداد" في موقعنا.';
+        } else if (userMessage.includes('ما هي') && userMessage.includes('النماذج المحلية')) {
+          response = 'النماذج المحلية هي نماذج ذكاء اصطناعي يمكن تشغيلها على جهازك الشخصي دون الحاجة إلى اتصال بالإنترنت أو مفاتيح API خارجية. من أشهر هذه النماذج:\n\n- TinyLlama (1.1B): نموذج خفيف مناسب للأجهزة محدودة الموارد\n- Llama 2 (7B): نموذج متوسط الحجم مع أداء متوازن\n- Mistral (7B): نموذج متطور يوفر أداءً ممتازًا\n- Phi-2 (2.7B): نموذج صغير الحجم مع أداء مذهل مقارنة بحجمه';
+        } else if (userMessage.includes('خادم API')) {
+          response = 'لإعداد خادم API للنماذج المحلية، يمكنك استخدام llama-cpp-python الذي يوفر واجهة متوافقة مع OpenAI API. قم بتثبيته باستخدام الأمر:\n\n```\npip install llama-cpp-python[server]\n```\n\nثم قم بتشغيل الخادم:\n\n```\npython -m llama_cpp.server --model path/to/model.gguf --host 127.0.0.1 --port 8000\n```\n\nبعد ذلك، يمكنك استخدام الخادم على العنوان: http://127.0.0.1:8000/';
+        } else if (userMessage.includes('قاعدة بيانات')) {
+          response = 'تم ربط النظام بقاعدة بيانات محلية (IndexedDB) لتخزين المحادثات وإدارة النماذج. يمكنك الاطلاع على حالة الاتصال وإدارة قاعدة البيانات من خلال قائمة الإعدادات.';
+        } else if (userMessage.includes('تفكير عميق')) {
+          response = 'ميزة التفكير العميق تتيح للنموذج تحليل السؤال بشكل أعمق وتقديم إجابات أكثر دقة. عند تفعيل هذه الميزة، سيقوم النموذج بعرض عملية تفكيره قبل تقديم الإجابة النهائية.';
+        } else if (userMessage.includes('بحث متقدم')) {
+          response = 'ميزة البحث المتقدم تتيح للنموذج البحث في الويب عن معلومات حديثة ومصادر موثوقة للإجابة على استفساراتك. هذه الميزة مفيدة خاصة للأسئلة التي تتطلب معلومات حديثة أو متخصصة.';
+        } else {
+          response = 'شكراً على سؤالك. كنموذج محلي، أحاول فهم استفسارك وتقديم إجابة مفيدة. يمكنك استخدام ميزة "التفكير العميق" أو "البحث المتقدم" للحصول على إجابات أكثر دقة وشمولية.';
+        }
+        
+        // إضافة استجابة النموذج
+        addBotMessage(response);
+      }
+      
+      // الحصول على الوقت الحالي
+      function getCurrentTime() {
+        const now = new Date();
+        return now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+      }
+      
+      // مسح المحادثة
+      function clearChat() {
+        // مسح سجل المحادثة
+        chatHistory = [];
+        
+        // مسح واجهة المحادثة
+        while (chatMessages.firstChild) {
+          chatMessages.removeChild(chatMessages.firstChild);
+        }
+        
+        // إظهار حالة الفراغ
+        emptyState.style.display = 'flex';
+      }
+      
+      // تحديث إعدادات النموذج
+      function updateModelSettings() {
+        modelSettings.model = modelSelector.value;
+        modelSettings.temperature = parseFloat(temperatureSlider.value);
+        modelSettings.maxTokens = parseInt(maxTokensSlider.value);
+        modelSettings.webSearch = webSearchToggle.checked;
+        modelSettings.deepThinking = deepThinkingToggle.checked;
+        modelSettings.saveChats = saveChatsToggle.checked;
+        
+        // تحديث اسم النموذج في الواجهة
+        currentModelName.textContent = modelSelector.options[modelSelector.selectedIndex].text;
+        
+        // إغلاق القائمة
+        closeMenu();
+      }
+      
+      // فتح القائمة
+      function openMenu() {
+        menuOverlay.classList.add('active');
+        overlay.classList.add('active');
+      }
+      
+      // إغلاق القائمة
+      function closeMenu() {
+        menuOverlay.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+      
+      // محاكاة الاتصال بقاعدة البيانات
+      function connectToDatabase() {
+        dbStatus.textContent = 'جاري الاتصال...';
+        dbStatus.style.color = '#ff9900';
+        
+        setTimeout(() => {
+          dbConnected = true;
+          dbStatus.textContent = 'متصل';
+          dbStatus.style.color = '#0f0';
+        }, 1500);
+      }
+      
+      // أحداث النقر
+      sendBtn.addEventListener('click', sendMessage);
+      userInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+      
+      thinkBtn.addEventListener('click', function() {
+        if (userInput.value.trim() === '') {
+          userInput.value = 'فكر بعمق في ';
+          userInput.focus();
+        } else {
+          sendMessage();
+        }
+      });
+      
+      searchBtn.addEventListener('click', function() {
+        if (userInput.value.trim() === '') {
+          userInput.value = 'ابحث عن ';
+          userInput.focus();
+        } else {
+          sendMessage();
+        }
+      });
+      
+      clearBtn.addEventListener('click', clearChat);
+      
+      menuBtn.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+      
+      // أحداث الاقتراحات
+      suggestions.forEach(suggestion => {
+        suggestion.addEventListener('click', function() {
+          userInput.value = this.textContent;
+          sendMessage();
+        });
+      });
+      
+      // أحداث الإعدادات
+      modelSelector.addEventListener('change', updateModelSettings);
+      temperatureSlider.addEventListener('input', function() {
+        temperatureValue.textContent = this.value;
+        updateModelSettings();
+      });
+      maxTokensSlider.addEventListener('input', function() {
+        maxTokensValue.textContent = this.value;
+        updateModelSettings();
+      });
+      webSearchToggle.addEventListener('change', updateModelSettings);
+      deepThinkingToggle.addEventListener('change', updateModelSettings);
+      saveChatsToggle.addEventListener('change', updateModelSettings);
+      
+      // أحداث قاعدة البيانات
+      connectDbItem.addEventListener('click', connectToDatabase);
+    });
+  </script>
+</body>
+</html>

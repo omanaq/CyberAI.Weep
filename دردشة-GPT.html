@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>دردشة GPT - Gemini Flash</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    body {
+      background-color: #f8f8f8;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      direction: rtl;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 1em;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header img {
+      border-radius: 50%;
+      width: 40px;
+    }
+
+    .chat-title {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .version {
+      font-size: 0.9em;
+      background: #e9eefb;
+      color: #444;
+      padding: 2px 8px;
+      border-radius: 8px;
+    }
+
+    main {
+      padding: 2em 1em;
+      text-align: center;
+    }
+
+    .hello {
+      font-size: 2em;
+      font-weight: bold;
+      background: linear-gradient(to right, #4285f4, #ea4335);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2em;
+    }
+
+    .suggestions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 2em;
+    }
+
+    .suggestions button {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    .input-area {
+      display: flex;
+      justify-content: center;
+      padding: 1em;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ddd;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+      font-size: 1em;
+    }
+
+    .input-area button {
+      background: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      margin-right: 10px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    @media(max-width: 768px) {
+      .input-area {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .input-area button {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="شعار">
+  <div>
+    <div class="chat-title">Gemini</div>
+    <div class="version">2.0 Flash</div>
+  </div>
+</header>
+
+<main>
+  <div class="hello">مرحباً عزيز</div>
+
+  <div class="suggestions">
+    <button>ابحث في موضوع معين</button>
+    <button>ساعدني في الكتابة</button>
+    <button>أعطني نصائح للدراسة</button>
+    <button>اعطني أفكاراً لمشروع</button>
+  </div>
+</main>
+
+<div class="input-area">
+  <input type="text" id="userInput" placeholder="اسأل Gemini">
+  <button onclick="sendMessage()">+</button>
+</div>
+
+<script>
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  alert('سيتم إرسال السؤال: ' + input.value);
+  // هنا يتم الدمج مع API الحقيقي لاحقًا
+}
+</script>
+
+</body>
+</html>

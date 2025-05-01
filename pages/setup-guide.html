@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل الإعداد | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    .setup-steps {
+      counter-reset: step-counter;
+      margin: 2em 0;
+    }
+    
+    .setup-step {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.5em;
+      margin-bottom: 1.5em;
+      position: relative;
+    }
+    
+    .setup-step::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background-color: #ff0033;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .setup-step h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+    
+    .terminal {
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      padding: 1em;
+      border-radius: 5px;
+      margin: 1em 0;
+      overflow-x: auto;
+      position: relative;
+    }
+    
+    .terminal .prompt {
+      color: #ff0033;
+    }
+    
+    .terminal .command {
+      color: white;
+    }
+    
+    .terminal .output {
+      color: #0f0;
+    }
+    
+    .copy-btn {
+      position: absolute;
+      top: 0.5em;
+      left: 0.5em;
+      background-color: #333;
+      color: #ccc;
+      border: none;
+      border-radius: 3px;
+      padding: 0.3em 0.6em;
+      font-size: 0.8em;
+      cursor: pointer;
+    }
+    
+    .copy-btn:hover {
+      background-color: #ff0033;
+      color: white;
+    }
+    
+    .tabs {
+      display: flex;
+      margin: 1em 0;
+      border-bottom: 1px solid #333;
+    }
+    
+    .tab {
+      padding: 0.5em 1em;
+      cursor: pointer;
+      background-color: #111;
+      border: 1px solid #333;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      margin-left: 5px;
+    }
+    
+    .tab.active {
+      background-color: #ff0033;
+      color: white;
+      border-color: #ff0033;
+    }
+    
+    .tab-content {
+      display: none;
+      padding: 1em;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      border-top: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .requirements {
+      background-color: rgba(255, 0, 51, 0.1);
+      border: 1px solid #ff0033;
+      border-radius: 5px;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    
+    .requirements h4 {
+      margin-top: 0;
+      color: #ff0033;
+    }
+    
+    .requirements ul {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
+    <h1>دليل الإعداد</h1>
+    <p>خطوات تثبيت وإعداد النماذج المحلية</p>
+  </header>
+
+  <nav>
+    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+  </nav>
+
+  <main class="container">
+    <h2>دليل إعداد النماذج المحلية</h2>
+    <p>يوضح هذا الدليل خطوات تثبيت وإعداد النماذج المحلية على جهازك. اتبع الخطوات بعناية للحصول على أفضل تجربة.</p>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="windows">Windows</div>
+      <div class="tab" data-tab="linux">Linux</div>
+      <div class="tab" data-tab="macos">macOS</div>
+      <div class="tab" data-tab="android">Android</div>
+    </div>
+    
+    <div id="windows" class="tab-content active">
+      <h3>متطلبات النظام لـ Windows</h3>
+      <div class="requirements">
+        <h4>الحد الأدنى:</h4>
+        <ul>
+          <li>نظام Windows 10 أو أحدث (64 بت)</li>
+          <li>ذاكرة RAM: 8GB على الأقل (16GB موصى به)</li>
+          <li>معالج حديث متعدد النواة</li>
+          <li>مساحة تخزين: 2GB على الأقل للبرامج والنماذج الصغيرة</li>
+        </ul>
+      </div>
+      
+      <div class="setup-steps">
+        <div class="setup-step">
+          <h3>تثبيت llama.cpp</h3>
+          <p>llama.cpp هو برنامج خفيف لتشغيل نماذج اللغة المحلية. يمكنك تثبيته بإحدى الطرق التالية:</p>
+          
+          <h4>الطريقة 1: تنزيل الإصدار المجمع مسبقًا</h4>
+          <ol>
+            <li>قم بزيارة <a href="https://github.com/ggerganov/llama.cpp/releases" target="_blank">صفحة الإصدارات</a></li>
+            <li>قم بتنزيل أحدث إصدار لنظام Windows (ملف zip)</li>
+            <li>قم بفك ضغط الملف في مجلد على جهازك</li>
+          </ol>
+          
+          <h4>الطريقة 2: البناء من المصدر</h4>
+          <p>إذا كنت تفضل بناء البرنامج من المصدر، اتبع الخطوات التالية:</p>
+          
+          <div class="terminal">
+            <div><span class="prompt">></span> <span class="command">git clone https://github.com/ggerganov/llama.cpp</span></div>
+            <div><span class="prompt">></span> <span class="command">cd llama.cpp</span></div>
+            <div><span class="prompt">></span> <span class="command">mkdir build</span></div>
+            <div><span class="prompt">></span> <span class="command">cd build</span></div>
+            <div><span class="prompt">></span> <span class="command">cmake ..</span></div>
+            <div><span class="prompt">></span> <span class="command">cmake --build . --config Release</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step" id="tinyllama">
+          <h3>تنزيل وتشغيل نموذج TinyLlama</h3>
+          <p>TinyLlama هو نموذج خفيف مثالي للأجهزة محدودة الموارد:</p>
+          
+          <h4>تنزيل النموذج:</h4>
+          <div class="terminal">
+            <div><span class="prompt">></span> <span class="command">curl -L -o tinyllama.gguf https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf</span></div>
+          </div>
+          
+          <p>أو يمكنك تنزيله مباشرة من <a href="https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF" target="_blank">هنا</a></p>
+          
+          <h4>تشغيل النموذج:</h4>
+          <div class="terminal">
+            <div><span class="prompt">></span> <span class="command">cd path\to\llama.cpp</span></div>
+            <div><span class="prompt">></span> <span class="command">.\build\bin\Release\main.exe -m path\to\tinyllama.gguf -c 512 -p "مرحبا، كيف حالك؟"</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step" id="llama2">
+          <h3>تنزيل وتشغيل نموذج Llama 2</h3>
+          <p>Llama 2 هو نموذج متوسط الحجم مع أداء متوازن:</p>
+          
+          <h4>تنزيل النموذج:</h4>
+          <div class="terminal">
+            <div><span class="prompt">></span> <span class="command">curl -L -o llama2.gguf https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf</span></div>
+          </div>
+          
+          <p>أو يمكنك تنزيله مباشرة من <a href="https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF" target="_blank">هنا</a></p>
+          
+          <h4>تشغيل النموذج:</h4>
+          <div class="terminal">
+            <div><span class="prompt">></span> <span class="command">cd path\to\llama.cpp</span></div>
+            <div><span class="prompt">></span> <span class="command">.\build\bin\Release\main.exe -m path\to\llama2.gguf -c 2048 -p "مرحبا، كيف يمكنني استخدام الذكاء الاصطناعي في مشروعي؟"</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step">
+          <h3>إعداد واجهة API (اختياري)</h3>
+          <p>يمكنك تشغيل خادم API محلي لاستخدام النموذج في تطبيقاتك:</p>
+          
+          <h4>تثبيت Python:</h4>
+          <p>تأكد من تثبيت Python 3.8 أو أحدث من <a href="https://www.python.org/downloads/" target="_blank">هنا</a></p>
+          
+          <h4>تثبيت llama-cpp-python:</h4>
+          <div class="terminal">
+            <div><span class="prompt">></span> <span class="command">pip install llama-cpp-python[server]</span></div>
+          </div>
+          
+          <h4>تشغيل خادم API:</h4>
+          <div class="terminal">
+            <div><span class="prompt">></span> <span class="command">python -m llama_cpp.server --model path\to\tinyllama.gguf --host 127.0.0.1 --port 8000</span></div>
+          </div>
+          
+          <p>يمكنك الآن الوصول إلى واجهة API على العنوان: <code>http://127.0.0.1:8000/</code></p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="linux" class="tab-content">
+      <h3>متطلبات النظام لـ Linux</h3>
+      <div class="requirements">
+        <h4>الحد الأدنى:</h4>
+        <ul>
+          <li>توزيعة Linux حديثة (Ubuntu 20.04+, Debian 11+, Fedora 35+)</li>
+          <li>ذاكرة RAM: 8GB على الأقل (16GB موصى به)</li>
+          <li>معالج حديث متعدد النواة</li>
+          <li>مساحة تخزين: 2GB على الأقل للبرامج والنماذج الصغيرة</li>
+        </ul>
+      </div>
+      
+      <div class="setup-steps">
+        <div class="setup-step">
+          <h3>تثبيت المتطلبات الأساسية</h3>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">sudo apt update && sudo apt install -y build-essential cmake git python3-pip</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step">
+          <h3>تثبيت llama.cpp</h3>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">git clone https://github.com/ggerganov/llama.cpp</span></div>
+            <div><span class="prompt">$</span> <span class="command">cd llama.cpp</span></div>
+            <div><span class="prompt">$</span> <span class="command">mkdir build && cd build</span></div>
+            <div><span class="prompt">$</span> <span class="command">cmake ..</span></div>
+            <div><span class="prompt">$</span> <span class="command">make -j4</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step">
+          <h3>تنزيل وتشغيل نموذج TinyLlama</h3>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">wget -O tinyllama.gguf https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf</span></div>
+            <div><span class="prompt">$</span> <span class="command">./build/bin/main -m tinyllama.gguf -c 512 -p "مرحبا، كيف حالك؟"</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step">
+          <h3>إعداد واجهة API (اختياري)</h3>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">pip3 install llama-cpp-python[server]</span></div>
+            <div><span class="prompt">$</span> <span class="command">python3 -m llama_cpp.server --model tinyllama.gguf --host 127.0.0.1 --port 8000</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="macos" class="tab-content">
+      <h3>متطلبات النظام لـ macOS</h3>
+      <div class="requirements">
+        <h4>الحد الأدنى:</h4>
+        <ul>
+          <li>macOS 11 (Big Sur) أو أحدث</li>
+          <li>ذاكرة RAM: 8GB على الأقل (16GB موصى به)</li>
+          <li>معالج Intel أو Apple Silicon</li>
+          <li>مساحة تخزين: 2GB على الأقل للبرامج والنماذج الصغيرة</li>
+        </ul>
+      </div>
+      
+      <div class="setup-steps">
+        <div class="setup-step">
+          <h3>تثبيت المتطلبات الأساسية</h3>
+          <p>تثبيت Homebrew إذا لم يكن مثبتًا بالفعل:</p>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span></div>
+          </div>
+          
+          <p>تثبيت الأدوات المطلوبة:</p>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">brew install cmake python git</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step">
+          <h3>تثبيت llama.cpp</h3>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">git clone https://github.com/ggerganov/llama.cpp</span></div>
+            <div><span class="prompt">$</span> <span class="command">cd llama.cpp</span></div>
+            <div><span class="prompt">$</span> <span class="command">mkdir build && cd build</span></div>
+            <div><span class="prompt">$</span> <span class="command">cmake ..</span></div>
+            <div><span class="prompt">$</span> <span class="command">make -j4</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step">
+          <h3>تنزيل وتشغيل نموذج TinyLlama</h3>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">curl -L -o tinyllama.gguf https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf</span></div>
+            <div><span class="prompt">$</span> <span class="command">./build/bin/main -m tinyllama.gguf -c 512 -p "مرحبا، كيف حالك؟"</span></div>
+          </div>
+        </div>
+        
+        <div class="setup-step">
+          <h3>إعداد واجهة API (اختياري)</h3>
+          <div class="terminal">
+            <div><span class="prompt">$</span> <span class="command">pip3 install llama-cpp-python[server]</span></div>
+            <div><span class="prompt">$</span> <span class="command">python3 -m llama_cpp.server --model tinyllama.gguf --host 127.0.0.1 --port 8000</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="android" class="tab-content">
+      <h3>متطلبات النظام لـ Android</h3>
+      <div class="requirements">
+        <h4>الحد الأدنى:</h4>
+        <ul>
+          <li>Android 8.0 أو أحدث</li>
+          <li>ذاكرة RAM: 6GB على الأقل</li>
+          <li>معالج حديث (Snapdragon 8xx أو ما يعادله)</li>
+          <li>مساحة تخزين: 1GB على الأقل للتطبيق والنماذج الصغيرة</li>
+        </ul>
+      </div>
+      
+      <div class="setup-steps">
+        <div class="setup-step">
+          <h3>تثبيت تطبيق MLC LLM</h3>
+          <p>MLC LLM هو تطبيق يتيح تشغيل نماذج اللغة على الأجهزة المحمولة:</p>
+          <ol>
+            <li>قم بتنزيل تطبيق MLC LLM من <a href="https://play.google.com/store/apps/details?id=com.mlc.mlcllm" target="_blank">متجر Google Play</a></li>
+            <li>افتح التطبيق واتبع التعليمات لتنزيل نموذج TinyLlama أو أي نموذج آخر خفيف</li>
+            <li>يمكنك الآن استخدام النموذج للدردشة مباشرة على هاتفك</li>
+          </ol>
+        </div>
+        
+        <div class="setup-step">
+          <h3>تثبيت تطبيق LLM Studio (بديل)</h3>
+          <p>LLM Studio هو تطبيق آخر يدعم تشغيل نماذج GGUF على الأجهزة المحمولة:</p>
+          <ol>
+            <li>قم بتنزيل تطبيق LLM Studio من <a href="https://play.google.com/store/apps/details?id=com.reco.llmstudio" target="_blank">متجر Google Play</a></li>
+            <li>افتح التطبيق وانتقل إلى قسم "النماذج"</li>
+            <li>اختر نموذج TinyLlama أو أي نموذج آخر خفيف للتنزيل</li>
+            <li>بعد التنزيل، يمكنك بدء الدردشة مع النموذج</li>
+          </ol>
+        </div>
+        
+        <div class="setup-step">
+          <h3>نصائح لتحسين الأداء على الأجهزة المحمولة</h3>
+          <ul>
+            <li>استخدم نماذج مكممة بشكل كبير (Q2_K أو Q3_K_S) للحصول على أداء أفضل</li>
+            <li>قم بإغلاق التطبيقات الأخرى قبل تشغيل نماذج الذكاء الاصطناعي</li>
+            <li>تأكد من توفر مساحة كافية على جهازك</li>
+            <li>استخدم الشاحن أثناء تشغيل النماذج لتجنب استنزاف البطارية</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <h3>استكشاف الأخطاء وإصلاحها</h3>
+    <p>إذا واجهت مشاكل أثناء الإعداد، جرب الحلول التالية:</p>
+    <ul>
+      <li><strong>خطأ "Out of memory":</strong> استخدم نموذجًا أصغر أو نسخة مكممة بشكل أكبر</li>
+      <li><strong>بطء في الاستجابة:</strong> قلل قيمة المعلمة <code>-c</code> (سياق النموذج) أو استخدم نموذجًا أصغر</li>
+      <li><strong>مشاكل في تثبيت llama-cpp-python:</strong> تأكد من تثبيت أدوات البناء المناسبة لنظامك</li>
+      <li><strong>أخطاء في تشغيل النموذج:</strong> تأكد من استخدام المسار الصحيح للنموذج ومن تنزيله بشكل كامل</li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>تابع عبدالعزيز:</p>
+    <p>
+      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+      <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
+      <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
+    </p>
+    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // تبديل علامات التبويب
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab');
+          
+          // إزالة الفئة النشطة من جميع علامات التبويب
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          // إضافة الفئة النشطة إلى علامة التبويب المحددة
+          tab.classList.add('active');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+      
+      // إضافة أزرار نسخ لكتل الأوامر
+      const terminals = document.querySelectorAll('.terminal');
+      
+      terminals.forEach(terminal => {
+        const copyButton = document.createElement('button');
+        copyButton.className = 'copy-btn';
+        copyButton.textContent = 'نسخ';
+        
+        terminal.appendChild(copyButton);
+        
+        copyButton.addEventListener('click', () => {
+          const commands = Array.from(terminal.querySelectorAll('.command'))
+                              .map(cmd => cmd.textContent)
+                              .join('\n');
+          
+          navigator.clipboard.writeText(commands)
+            .then(() => {
+              copyButton.textContent = 'تم النسخ!';
+              setTimeout(() => {
+                copyButton.textContent = 'نسخ';
+              }, 2000);
+            })
+            .catch(err => {
+              console.error('فشل في نسخ النص: ', err);
+            });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

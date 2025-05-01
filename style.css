@@ -1,0 +1,417 @@
+/* style.css - تصميم بلون أسود وأحمر وذهبي */
+
+:root {
+  --primary-color: #ff0033;
+  --primary-dark: #cc0000;
+  --primary-light: #ff4d4d;
+  --gold-color: #d4af37;
+  --gold-dark: #b8860b;
+  --gold-light: #ffd700;
+  --bg-dark: #0d0d0d;
+  --bg-darker: #080808;
+  --bg-light: #1a1a1a;
+  --text-light: #f2f2f2;
+  --text-muted: #b3b3b3;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  direction: rtl;
+}
+
+header,
+footer {
+  background-color: var(--bg-light);
+  color: var(--primary-color);
+  text-align: center;
+  padding: 1.5em 0;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+  z-index: -1;
+}
+
+header h1 {
+  margin: 0.5em 0;
+  font-size: 2.2em;
+  text-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+}
+
+header p {
+  color: var(--gold-color);
+  font-size: 1.1em;
+}
+
+nav {
+  background-color: var(--bg-light);
+  text-align: center;
+  padding: 1em;
+  border-bottom: 1px solid var(--primary-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav a {
+  color: var(--primary-color);
+  margin: 0 1em;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 0.5em 0.8em;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  color: white;
+  background-color: rgba(255, 0, 51, 0.2);
+  text-shadow: 0 0 5px var(--primary-light);
+}
+
+main {
+  padding: 2em;
+  min-height: 70vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2,
+h3,
+h4 {
+  color: var(--primary-color);
+  margin: 1em 0 0.5em 0;
+}
+
+h2 {
+  border-bottom: 1px solid var(--primary-dark);
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--gold-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+code,
+pre {
+  background-color: var(--bg-darker);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 1em;
+  margin: 1em 0;
+  border-left: 3px solid var(--primary-color);
+}
+
+button,
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--primary-dark);
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 3em;
+  border-top: 1px solid var(--primary-dark);
+  border-bottom: none;
+  padding: 2em 0;
+}
+
+footer a {
+  color: var(--gold-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+  }
+
+  nav a {
+    margin: 0.3em 0;
+    padding: 0.5em;
+    display: block;
+  }
+
+  .container {
+    padding: 0 1em;
+  }
+
+  header h1 {
+    font-size: 1.8em;
+  }
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+th,
+td {
+  padding: 0.75em;
+  text-align: right;
+  border-bottom: 1px solid var(--bg-light);
+}
+
+th {
+  background-color: var(--bg-light);
+  color: var(--primary-color);
+}
+
+tr:hover {
+  background-color: rgba(255, 0, 51, 0.05);
+}
+
+/* Lists */
+ul,
+ol {
+  margin: 1em 0;
+  padding-right: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Code blocks */
+.code-block {
+  background-color: var(--bg-darker);
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em 0;
+  overflow-x: auto;
+  position: relative;
+}
+
+.code-block .copy-btn {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+  background-color: var(--bg-light);
+  color: var(--text-muted);
+  border: none;
+  border-radius: 3px;
+  padding: 0.3em 0.6em;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.code-block .copy-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Terminal */
+.terminal {
+  background-color: #000;
+  color: #0f0;
+  font-family: "Courier New", monospace;
+  padding: 1em;
+  border-radius: 5px;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+
+.terminal .prompt {
+  color: var(--primary-color);
+}
+
+.terminal .command {
+  color: white;
+}
+
+.terminal .output {
+  color: #0f0;
+}
+
+/* Gold accents */
+.gold-text {
+  color: var(--gold-color);
+}
+
+.gold-border {
+  border-color: var(--gold-color);
+}
+
+.gold-bg {
+  background-color: var(--gold-color);
+  color: var(--bg-dark);
+}
+
+.premium-badge {
+  background-color: var(--gold-color);
+  color: var(--bg-dark);
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+/* User profile */
+.user-profile {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 1em;
+  border: 2px solid var(--primary-color);
+}
+
+.user-profile .user-name {
+  font-weight: bold;
+  color: var(--text-light);
+}
+
+.user-profile .user-role {
+  font-size: 0.8em;
+  color: var(--gold-color);
+}
+
+.user-profile .logout-btn {
+  margin-right: auto;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 0.3em 0.6em;
+  font-size: 0.9em;
+}
+
+.user-profile .logout-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* API Key styling */
+.api-key {
+  font-family: "Courier New", monospace;
+  background-color: var(--bg-darker);
+  padding: 0.5em;
+  border-radius: 3px;
+  border: 1px solid #333;
+  color: var(--gold-color);
+}
+
+.unlimited-key {
+  color: var(--gold-light);
+  border-color: var(--gold-color);
+}
+
+.free-key {
+  color: var(--primary-light);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.badge-premium {
+  background-color: var(--gold-color);
+  color: var(--bg-dark);
+}
+
+.badge-free {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.badge-unlimited {
+  background-color: var(--gold-dark);
+  color: white;
+  border: 1px solid var(--gold-light);
+}
+
+/* Wolf logo styling */
+.wolf-logo {
+  max-width: 100px;
+  margin-bottom: 1em;
+}
+
+/* Auth required notice */
+.auth-required {
+  background-color: rgba(255, 0, 51, 0.1);
+  border: 1px solid var(--primary-color);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.auth-required h3 {
+  margin-top: 0;
+}
+
+.auth-required .btn {
+  margin-top: 1em;
+}

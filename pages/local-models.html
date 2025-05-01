@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>النماذج المحلية | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 2em 0;
+    }
+    
+    .model-card {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid #ff0033;
+      border-radius: 10px;
+      padding: 1.5em;
+      transition: transform 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .model-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 0, 51, 0.3);
+    }
+    
+    .model-card img {
+      width: 80px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .model-card h3 {
+      color: #ff0033;
+      margin-top: 0;
+    }
+    
+    .model-card p {
+      color: #cccccc;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    
+    .model-card .specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .model-card .spec {
+      background-color: rgba(255, 0, 51, 0.2);
+      border: 1px solid #ff0033;
+      border-radius: 15px;
+      padding: 5px 10px;
+      font-size: 0.8em;
+      color: #ff9999;
+    }
+    
+    .model-card .download-btn {
+      background-color: #ff0033;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+    }
+    
+    .model-card .download-btn:hover {
+      background-color: #cc0000;
+    }
+    
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+    
+    .filter-bar select, .filter-bar input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #111;
+      color: #fff;
+    }
+    
+    .filter-bar button {
+      padding: 8px 15px;
+      background-color: #ff0033;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .filter-bar button:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
+    <h1>النماذج المحلية</h1>
+    <p>استكشف وتنزيل نماذج الذكاء الاصطناعي للتشغيل المحلي</p>
+  </header>
+
+  <nav>
+    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+  </nav>
+
+  <main class="container">
+    <h2>استكشاف النماذج المحلية</h2>
+    <p>هنا يمكنك العثور على مجموعة من نماذج الذكاء الاصطناعي المحلية التي يمكن تشغيلها على جهازك دون الحاجة إلى مفاتيح API خارجية.</p>
+    
+    <div class="filter-bar">
+      <select id="size-filter">
+        <option value="all">جميع الأحجام</option>
+        <option value="small">صغير (< 1GB)</option>
+        <option value="medium">متوسط (1-5GB)</option>
+        <option value="large">كبير (> 5GB)</option>
+      </select>
+      
+      <select id="device-filter">
+        <option value="all">جميع الأجهزة</option>
+        <option value="mobile">هاتف محمول</option>
+        <option value="desktop">حاسوب مكتبي</option>
+        <option value="server">خادم</option>
+      </select>
+      
+      <input type="text" id="search-input" placeholder="بحث...">
+      <button id="search-btn">بحث</button>
+    </div>
+    
+    <div class="model-grid">
+      <div class="model-card" id="tinyllama">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="TinyLlama Model">
+        <h3>TinyLlama (1.1B)</h3>
+        <p>نموذج خفيف مثالي للهواتف والأجهزة محدودة الموارد. يوفر أداءً جيدًا للمهام البسيطة مع استهلاك منخفض للموارد.</p>
+        <div class="specs">
+          <span class="spec">الحجم: ~400MB-1GB</span>
+          <span class="spec">الدقة: مناسبة للمهام البسيطة</span>
+          <span class="spec">الصيغة: GGUF</span>
+          <span class="spec">مناسب للهاتف</span>
+        </div>
+        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#tinyllama" class="download-btn">دليل التثبيت</a>
+      </div>
+      
+      <div class="model-card" id="llama2">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Llama 2 Model">
+        <h3>Llama 2 (7B)</h3>
+        <p>نموذج متوسط الحجم مع أداء متوازن للحواسيب المكتبية. يوفر دقة عالية في الإجابات ودعم للغة العربية.</p>
+        <div class="specs">
+          <span class="spec">الحجم: ~4GB</span>
+          <span class="spec">الدقة: جيدة للمهام المتوسطة</span>
+          <span class="spec">الصيغة: GGUF</span>
+          <span class="spec">مناسب للحاسوب</span>
+        </div>
+        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#llama2" class="download-btn">دليل التثبيت</a>
+      </div>
+      
+      <div class="model-card">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Mistral Model">
+        <h3>Mistral (7B)</h3>
+        <p>نموذج متطور يوفر أداءً ممتازًا مع حجم معقول. يتفوق في فهم السياق والإجابات المنطقية.</p>
+        <div class="specs">
+          <span class="spec">الحجم: ~4GB</span>
+          <span class="spec">الدقة: ممتازة</span>
+          <span class="spec">الصيغة: GGUF</span>
+          <span class="spec">مناسب للحاسوب</span>
+        </div>
+        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#mistral" class="download-btn">دليل التثبيت</a>
+      </div>
+      
+      <div class="model-card">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Phi-2 Model">
+        <h3>Phi-2 (2.7B)</h3>
+        <p>نموذج صغير الحجم من Microsoft مع أداء مذهل مقارنة بحجمه. مثالي للأجهزة متوسطة المواصفات.</p>
+        <div class="specs">
+          <span class="spec">الحجم: ~1.5GB</span>
+          <span class="spec">الدقة: جيدة جدًا لحجمه</span>
+          <span class="spec">الصيغة: GGUF</span>
+          <span class="spec">مناسب للحاسوب المحمول</span>
+        </div>
+        <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html#phi2" class="download-btn">دليل التثبيت</a>
+      </div>
+    </div>
+    
+    <h3>كيفية اختيار النموذج المناسب</h3>
+    <p>عند اختيار نموذج للتشغيل المحلي، يجب مراعاة العوامل التالية:</p>
+    <ul>
+      <li><strong>مواصفات الجهاز:</strong> تأكد من أن جهازك يلبي الحد الأدنى من المتطلبات لتشغيل النموذج.</li>
+      <li><strong>حجم النموذج:</strong> كلما كان النموذج أكبر، كلما كان أكثر دقة ولكنه يتطلب موارد أكثر.</li>
+      <li><strong>الاستخدام:</strong> حدد ما إذا كنت تحتاج إلى النموذج للمهام البسيطة أو المعقدة.</li>
+      <li><strong>اللغة:</strong> تأكد من أن النموذج يدعم اللغة العربية إذا كنت تنوي استخدامه باللغة العربية.</li>
+    </ul>
+    
+    <h3>صيغ النماذج</h3>
+    <p>تتوفر النماذج بعدة صيغ، أهمها:</p>
+    <ul>
+      <li><strong>GGUF:</strong> صيغة حديثة تحل محل GGML، وهي مثالية للتشغيل المحلي مع llama.cpp.</li>
+      <li><strong>ONNX:</strong> صيغة مفتوحة المصدر تسمح بتشغيل النماذج على مختلف الأنظمة.</li>
+      <li><strong>PyTorch:</strong> صيغة أصلية للنماذج، تستخدم غالبًا للتدريب وليس للاستخدام النهائي.</li>
+    </ul>
+    
+    <h3>التكميم (Quantization)</h3>
+    <p>التكميم هو عملية تقليل دقة الأوزان في النموذج لتقليل حجمه واستهلاك الذاكرة. الخيارات الشائعة تشمل:</p>
+    <ul>
+      <li><strong>Q4_K_M:</strong> تكميم 4-بت مع دقة معقولة وحجم صغير.</li>
+      <li><strong>Q5_K_M:</strong> تكميم 5-بت، توازن جيد بين الدقة والحجم.</li>
+      <li><strong>Q8_0:</strong> تكميم 8-بت، دقة أعلى ولكن حجم أكبر.</li>
+      <li><strong>F16:</strong> دقة كاملة، أفضل أداء ولكن أكبر حجمًا.</li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>تابع عبدالعزيز:</p>
+    <p>
+      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+      <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
+      <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
+    </p>
+    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // تنفيذ وظائف التصفية والبحث
+      const searchBtn = document.getElementById('search-btn');
+      const searchInput = document.getElementById('search-input');
+      const sizeFilter = document.getElementById('size-filter');
+      const deviceFilter = document.getElementById('device-filter');
+      const modelCards = document.querySelectorAll('.model-card');
+      
+      searchBtn.addEventListener('click', filterModels);
+      searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+          filterModels();
+        }
+      });
+      
+      sizeFilter.addEventListener('change', filterModels);
+      deviceFilter.addEventListener('change', filterModels);
+      
+      function filterModels() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const sizeValue = sizeFilter.value;
+        const deviceValue = deviceFilter.value;
+        
+        modelCards.forEach(card => {
+          const modelName = card.querySelector('h3').textContent.toLowerCase();
+          const modelSpecs = card.querySelector('.specs').textContent.toLowerCase();
+          
+          // تطبيق تصفية البحث
+          const matchesSearch = searchTerm === '' || 
+                               modelName.includes(searchTerm) || 
+                               modelSpecs.includes(searchTerm);
+          
+          // تطبيق تصفية الحجم
+          let matchesSize = true;
+          if (sizeValue !== 'all') {
+            if (sizeValue === 'small' && !modelSpecs.includes('< 1gb')) matchesSize = false;
+            if (sizeValue === 'medium' && !modelSpecs.includes('~4gb')) matchesSize = false;
+            if (sizeValue === 'large' && !modelSpecs.includes('> 5gb')) matchesSize = false;
+          }
+          
+          // تطبيق تصفية الجهاز
+          let matchesDevice = true;
+          if (deviceValue !== 'all') {
+            if (deviceValue === 'mobile' && !modelSpecs.includes('هاتف')) matchesDevice = false;
+            if (deviceValue === 'desktop' && !modelSpecs.includes('حاسوب')) matchesDevice = false;
+            if (deviceValue === 'server' && !modelSpecs.includes('خادم')) matchesDevice = false;
+          }
+          
+          // عرض أو إخفاء البطاقة
+          if (matchesSearch && matchesSize && matchesDevice) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

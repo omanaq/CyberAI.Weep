@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>واجهة الدردشة | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      height: 70vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #333;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 2em 0;
+    }
+    
+    .chat-header {
+      background-color: #111;
+      padding: 1em;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chat-header h3 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .chat-header h3 img {
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
+      border-radius: 50%;
+    }
+    
+    .chat-header .model-info {
+      font-size: 0.8em;
+      color: #999;
+    }
+    
+    .chat-header .status {
+      display: flex;
+      align-items: center;
+    }
+    
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-left: 5px;
+    }
+    
+    .status-online {
+      background-color: #0f0;
+    }
+    
+    .status-offline {
+      background-color: #f00;
+    }
+    
+    .chat-messages {
+      flex-grow: 1;
+      padding: 1em;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .message {
+      max-width: 80%;
+      margin-bottom: 1em;
+      padding: 0.8em;
+      border-radius: 10px;
+      position: relative;
+    }
+    
+    .user-message {
+      background-color: rgba(255, 0, 51, 0.2);
+      border: 1px solid #ff0033;
+      align-self: flex-end;
+    }
+    
+    .bot-message {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      align-self: flex-start;
+    }
+    
+    .message-time {
+      font-size: 0.7em;
+      color: #999;
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+    }
+    
+    .chat-input {
+      display: flex;
+      padding: 1em;
+      background-color: #111;
+      border-top: 1px solid #333;
+    }
+    
+    .chat-input input {
+      flex-grow: 1;
+      padding: 0.8em;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #000;
+      color: #fff;
+      margin-left: 10px;
+    }
+    
+    .chat-input button {
+      background-color: #ff0033;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.8em 1.5em;
+      cursor: pointer;
+    }
+    
+    .chat-input button:hover {
+      background-color: #cc0000;
+    }
+    
+    .settings-panel {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.5em;
+      margin: 2em 0;
+    }
+    
+    .settings-panel h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+    
+    .settings-group {
+      margin-bottom: 1.5em;
+    }
+    
+    .settings-group h4 {
+      margin-bottom: 0.5em;
+    }
+    
+    .settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8em;
+    }
+    
+    .settings-row label {
+      flex-grow: 1;
+    }
+    
+    .settings-row input[type="range"] {
+      width: 150px;
+    }
+    
+    .settings-row input[type="number"] {
+      width: 60px;
+      padding: 0.3em;
+      background-color: #111;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 3px;
+    }
+    
+    .settings-row select {
+      padding: 0.3em;
+      background-color: #111;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 3px;
+    }
+    
+    .value-display {
+      width: 40px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    
+    .api-info {
+      background-color: rgba(255, 0, 51, 0.1);
+      border: 1px solid #ff0033;
+      border-radius: 5px;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    
+    .api-info code {
+      display: block;
+      padding: 0.5em;
+      background-color: #000;
+      margin: 0.5em 0;
+      border-radius: 3px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
+    <h1>واجهة الدردشة</h1>
+    <p>تفاعل مع نماذج الذكاء الاصطناعي المحلية</p>
+  </header>
+
+  <nav>
+    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+  </nav>
+
+  <main class="container">
+    <h2>واجهة الدردشة مع النماذج المحلية</h2>
+    <p>استخدم هذه الواجهة للتفاعل مع نماذج الذكاء الاصطناعي المحلية. تأكد من تشغيل خادم API المحلي أولاً كما هو موضح في <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>.</p>
+    
+    <div class="chat-container">
+      <div class="chat-header">
+        <h3>
+          <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Bot Avatar">
+          <span>TinyLlama Chat</span>
+        </h3>
+        <div class="model-info">النموذج: TinyLlama 1.1B</div>
+        <div class="status">
+          <span id="status-text">غير متصل</span>
+          <div class="status-indicator status-offline" id="status-indicator"></div>
+        </div>
+      </div>
+      
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot-message">
+          مرحباً! أنا نموذج TinyLlama المحلي. كيف يمكنني مساعدتك اليوم؟
+          <div class="message-time">12:00</div>
+        </div>
+      </div>
+      
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="اكتب رسالتك هنا..." disabled>
+        <button id="send-btn" disabled>إرسال</button>
+      </div>
+    </div>
+    
+    <div class="settings-panel">
+      <h3>إعدادات النموذج</h3>
+      
+      <div class="settings-group">
+        <h4>إعدادات الاتصال</h4>
+        <div class="settings-row">
+          <label for="api-url">عنوان API:</label>
+          <input type="text" id="api-url" value="http://localhost:8000" style="flex-grow: 1; padding: 0.5em; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 3px;">
+        </div>
+        <div class="settings-row">
+          <label for="model-path">مسار النموذج:</label>
+          <input type="text" id="model-path" value="./tinyllama.gguf" style="flex-grow: 1; padding: 0.5em; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 3px;">
+        </div>
+        <button id="connect-btn" style="margin-top: 10px;">اتصال</button>
+      </div>
+      
+      <div class="settings-group">
+        <h4>معلمات النموذج</h4>
+        <div class="settings-row">
+          <label for="temperature">درجة الحرارة:</label>
+          <span class="value-display" id="temperature-value">0.7</span>
+          <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7">
+        </div>
+        <div class="settings-row">
+          <label for="max-tokens">الحد الأقصى للرموز:</label>
+          <input type="number" id="max-tokens" min="10" max="2048" value="512">
+        </div>
+        <div class="settings-row">
+          <label for="top-p">Top P:</label>
+          <span class="value-display" id="top-p-value">0.9</span>
+          <input type="range" id="top-p" min="0" max="1" step="0.05" value="0.9">
+        </div>
+        <div class="settings-row">
+          <label for="context-size">حجم السياق:</label>
+          <select id="context-size">
+            <option value="512">512 (خفيف)</option>
+            <option value="1024">1024 (متوسط)</option>
+            <option value="2048">2048 (كامل)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <h3>استخدام واجهة API</h3>
+    <p>يمكنك أيضًا التفاعل مع النموذج المحلي عبر واجهة API باستخدام طلبات HTTP:</p>
+    
+    <div class="api-info">
+      <h4>مثال على طلب API:</h4>
+      <code>
+POST http://localhost:8000/v1/completions<br>
+Content-Type: application/json<br><br>
+{<br>
+&nbsp;&nbsp;"prompt": "مرحباً، كيف حالك؟",<br>
+&nbsp;&nbsp;"max_tokens": 512,<br>
+&nbsp;&nbsp;"temperature": 0.7,<br>
+&nbsp;&nbsp;"top_p": 0.9<br>
+}
+      </code>
+      
+      <h4>مثال على الاستجابة:</h4>
+      <code>
+{<br>
+&nbsp;&nbsp;"id": "cmpl-123456",<br>
+&nbsp;&nbsp;"object": "text_completion",<br>
+&nbsp;&nbsp;"created": 1677858242,<br>
+&nbsp;&nbsp;"model": "tinyllama.gguf",<br>
+&nbsp;&nbsp;"choices": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"text": "مرحباً! أنا بخير، شكراً على سؤالك. كيف يمكنني مساعدتك اليوم؟",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"index": 0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"logprobs": null,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"finish_reason": "stop"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;"usage": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"prompt_tokens": 5,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"completion_tokens": 15,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"total_tokens": 20<br>
+&nbsp;&nbsp;}<br>
+}
+      </code>
+    </div>
+  </main>
+
+  <footer>
+    <p>تابع عبدالعزيز:</p>
+    <p>
+      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+      <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
+      <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
+    </p>
+    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // عناصر واجهة المستخدم
+      const chatMessages = document.getElementById('chat-messages');
+      const userInput = document.getElementById('user-input');
+      const sendBtn = document.getElementById('send-btn');
+      const connectBtn = document.getElementById('connect-btn');
+      const statusText = document.getElementById('status-text');
+      const statusIndicator = document.getElementById('status-indicator');
+      
+      // عناصر الإعدادات
+      const apiUrl = document.getElementById('api-url');
+      const modelPath = document.getElementById('model-path');
+      const temperature = document.getElementById('temperature');
+      const temperatureValue = document.getElementById('temperature-value');
+      const maxTokens = document.getElementById('max-tokens');
+      const topP = document.getElementById('top-p');
+      const topPValue = document.getElementById('top-p-value');
+      const contextSize = document.getElementById('context-size');
+      
+      // تحديث قيم العرض
+      temperature.addEventListener('input', function() {
+        temperatureValue.textContent = this.value;
+      });
+      
+      topP.addEventListener('input', function() {
+        topPValue.textContent = this.value;
+      });
+      
+      // محاكاة الاتصال بخادم API
+      connectBtn.addEventListener('click', function() {
+        // في التطبيق الحقيقي، هنا سيتم الاتصال بخادم API
+        // لأغراض العرض، نقوم بمحاكاة الاتصال
+        
+        statusText.textContent = "جاري الاتصال...";
+        
+        setTimeout(function() {
+          // محاكاة نجاح الاتصال
+          const success = Math.random() > 0.3; // 70% فرصة للنجاح
+          
+          if (success) {
+            statusText.textContent = "متصل";
+            statusIndicator.classList.remove('status-offline');
+            statusIndicator.classList.add('status-online');
+            
+            // تمكين واجهة الدردشة
+            userInput.disabled = false;
+            sendBtn.disabled = false;
+            
+            // إضافة رسالة ترحيب
+            addBotMessage("تم الاتصال بنجاح! أنا نموذج " + 
+                         (modelPath.value.includes('tinyllama') ? 'TinyLlama' : 'AI') + 
+                         " المحلي. كيف يمكنني مساعدتك؟");
+          } else {
+            statusText.textContent = "فشل الاتصال";
+            statusIndicator.classList.remove('status-online');
+            statusIndicator.classList.add('status-offline');
+            
+            // إضافة رسالة خطأ
+            addBotMessage("فشل الاتصال بالخادم. تأكد من تشغيل خادم API المحلي وصحة عنوان URL.");
+          }
+        }, 1500);
+      });
+      
+      // إرسال رسالة
+      sendBtn.addEventListener('click', sendMessage);
+      userInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+      
+      function sendMessage() {
+        const message = userInput.value.trim();
+        if (message === '') return;
+        
+        // إضافة رسالة المستخدم
+        addUserMessage(message);
+        
+        // مسح حقل الإدخال
+        userInput.value = '';
+        
+        // محاكاة استجابة النموذج
+        simulateBotResponse(message);
+      }
+      
+      function addUserMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message user-message';
+        messageDiv.textContent = text;
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = getCurrentTime();
+        
+        messageDiv.appendChild(timeDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // التمرير إلى أسفل
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      function addBotMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot-message';
+        messageDiv.textContent = text;
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = getCurrentTime();
+        
+        messageDiv.appendChild(timeDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // التمرير إلى أسفل
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      function simulateBotResponse(userMessage) {
+        // تعطيل زر الإرسال أثناء "التفكير"
+        sendBtn.disabled = true;
+        userInput.disabled = true;
+        
+        // إضافة مؤشر الكتابة
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot-message';
+        typingDiv.textContent = 'جاري الكتابة...';
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // محاكاة وقت الاستجابة
+        setTimeout(function() {
+          // إزالة مؤشر الكتابة
+          chatMessages.removeChild(typingDiv);
+          
+          // إنشاء استجابة بسيطة
+          let response = '';
+          
+          if (userMessage.includes('مرحبا') || userMessage.includes('أهلا')) {
+            response = 'مرحباً! كيف يمكنني مساعدتك اليوم؟';
+          } else if (userMessage.includes('كيف حالك')) {
+            response = 'أنا مجرد نموذج لغوي، لكنني جاهز لمساعدتك! ماذا تريد أن تعرف؟';
+          } else if (userMessage.includes('ما هو') || userMessage.includes('ما هي')) {
+            response = 'هذا سؤال مثير للاهتمام. كنموذج محلي، لدي معرفة محدودة مقارنة بالنماذج الكبيرة عبر الإنترنت، لكنني سأحاول الإجابة بأفضل ما لدي.';
+          } else if (userMessage.includes('شكرا') || userMessage.includes('شكراً')) {
+            response = 'العفو! سعيد بمساعدتك. هل هناك شيء آخر تود معرفته؟';
+          } else {
+            response = 'شكراً على رسالتك. كنموذج محلي، أحاول فهم استفسارك وتقديم إجابة مفيدة. هل يمكنك توضيح سؤالك أكثر؟';
+          }
+          
+          // إضافة استجابة النموذج
+          addBotMessage(response);
+          
+          // إعادة تمكين واجهة المستخدم
+          sendBtn.disabled = false;
+          userInput.disabled = false;
+          userInput.focus();
+        }, 1500);
+      }
+      
+      function getCurrentTime() {
+        const now = new Date();
+        return now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+      }
+    });
+  </script>
+</body>
+</html>

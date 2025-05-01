@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من نحن | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    .about-section {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.5em;
+      margin-bottom: 2em;
+    }
+    
+    .about-section h3 {
+      color: #ff0033;
+      margin-top: 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+    
+    .team-member {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5em;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1em;
+    }
+    
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-left: 1em;
+      border: 2px solid #ff0033;
+    }
+    
+    .team-member-info {
+      flex-grow: 1;
+    }
+    
+    .team-member-name {
+      font-weight: bold;
+      color: #ff0033;
+      margin-bottom: 0.5em;
+    }
+    
+    .team-member-role {
+      color: #ccc;
+      font-style: italic;
+      margin-bottom: 0.5em;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 2em auto;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #ff0033;
+      top: 0;
+      bottom: 0;
+      right: 50%;
+      margin-right: -3px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      background-color: #ff0033;
+      border: 4px solid #ff0033;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .timeline-item-right {
+      right: 0;
+    }
+    
+    .timeline-item-left {
+      right: 50%;
+    }
+    
+    .timeline-item-left::after {
+      right: auto;
+      left: -10px;
+    }
+    
+    .timeline-content {
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: relative;
+      border-radius: 6px;
+      border: 1px solid #333;
+    }
+    
+    .timeline-content h3 {
+      margin-top: 0;
+      color: #ff0033;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .timeline::after {
+        right: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-right: 70px;
+        padding-left: 25px;
+      }
+      
+      .timeline-item-left {
+        right: 0;
+      }
+      
+      .timeline-item::after {
+        right: 21px;
+      }
+      
+      .timeline-item-left::after {
+        right: 21px;
+        left: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
+    <h1>من نحن</h1>
+    <p>تعرف على مشروع CyberAI OS وفريق العمل</p>
+  </header>
+
+  <nav>
+    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-key-management.html">مفاتيح API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+  </nav>
+
+  <main class="container">
+    <h2>عن مشروع CyberAI OS</h2>
+    
+    <div class="about-section">
+      <h3>رؤيتنا</h3>
+      <p>CyberAI OS هو مشروع مفتوح المصدر يهدف إلى تمكين الجميع من استخدام تقنيات الذكاء الاصطناعي بشكل محلي على أجهزتهم الخاصة، دون الحاجة إلى مفاتيح API خارجية أو اتصال دائم بالإنترنت.</p>
+      <p>نؤمن بأن الذكاء الاصطناعي يجب أن يكون متاحًا للجميع، مع الحفاظ على خصوصية المستخدمين وبياناتهم. من خلال توفير أدوات سهلة الاستخدام وأدلة مفصلة، نسعى إلى جعل تقنيات الذكاء الاصطناعي المتقدمة في متناول الجميع.</p>
+    </div>
+    
+    <div class="about-section">
+      <h3>فريق العمل</h3>
+      
+      <div class="team-member">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="عبدالعزيز">
+        <div class="team-member-info">
+          <div class="team-member-name">عبدالعزيز</div>
+          <div class="team-member-role">مؤسس المشروع ومطور رئيسي</div>
+          <p>مهتم بالأمن السيبراني والذكاء الاصطناعي، يعمل على تطوير حلول تقنية مبتكرة تجمع بين المجالين.</p>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="سارة">
+        <div class="team-member-info">
+          <div class="team-member-name">سارة</div>
+          <div class="team-member-role">مطورة واجهات المستخدم</div>
+          <p>متخصصة في تطوير واجهات المستخدم وتحسين تجربة المستخدم، تعمل على جعل التقنيات المعقدة سهلة الاستخدام للجميع.</p>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="محمد">
+        <div class="team-member-info">
+          <div class="team-member-name">محمد</div>
+          <div class="team-member-role">مهندس النماذج والخوارزميات</div>
+          <p>متخصص في نماذج التعلم العميق وتحسين أدائها على الأجهزة المحدودة، يعمل على تكييف النماذج الكبيرة للعمل بكفاءة على الأجهزة الشخصية.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="about-section">
+      <h3>تاريخ المشروع</h3>
+      
+      <div class="timeline">
+        <div class="timeline-item timeline-item-right">
+          <div class="timeline-content">
+            <h3>2023 - بداية الفكرة</h3>
+            <p>بدأت فكرة المشروع كمبادرة شخصية من عبدالعزيز لتوفير حلول ذكاء اصطناعي محلية للمستخدمين العرب.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item timeline-item-left">
+          <div class="timeline-content">
+            <h3>2024 - إطلاق النسخة التجريبية</h3>
+            <p>تم إطلاق النسخة التجريبية الأولى من CyberAI OS مع دعم لنماذج TinyLlama وLlama 2.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item timeline-item-right">
+          <div class="timeline-content">
+            <h3>2025 - توسيع المشروع</h3>
+            <p>توسيع المشروع ليشمل المزيد من النماذج والأدوات، وإضافة دعم للغة العربية في واجهات المستخدم والنماذج.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item timeline-item-left">
+          <div class="timeline-content">
+            <h3>المستقبل</h3>
+            <p>نعمل على تطوير نماذج محلية خاصة باللغة العربية، وتحسين أداء النماذج الحالية، وتوفير المزيد من الأدوات والموارد للمجتمع.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="about-section">
+      <h3>المساهمة في المشروع</h3>
+      <p>CyberAI OS هو مشروع مفتوح المصدر، ونرحب بمساهمات المجتمع. يمكنك المساهمة في المشروع من خلال:</p>
+      <ul>
+        <li>تطوير ميزات جديدة أو تحسين الميزات الحالية</li>
+        <li>إصلاح الأخطاء وتحسين الأداء</li>
+        <li>ترجمة المحتوى إلى لغات أخرى</li>
+        <li>كتابة وتحسين الوثائق والأدلة</li>
+        <li>مشاركة تجاربك واقتراحاتك</li>
+      </ul>
+      <p>للمساهمة في المشروع، يرجى زيارة <a href="https://github.com/username/cyberai-os" target="_blank">صفحة المشروع على GitHub</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>تابع عبدالعزيز:</p>
+    <p>
+      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+      <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
+      <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
+    </p>
+    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+</body>
+</html>

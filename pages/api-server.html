@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خادم API | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    .api-section {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.5em;
+      margin-bottom: 2em;
+    }
+    
+    .api-section h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+    
+    .endpoint {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 1em;
+      margin-bottom: 1em;
+    }
+    
+    .endpoint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5em;
+    }
+    
+    .endpoint-method {
+      background-color: #ff0033;
+      color: white;
+      padding: 0.3em 0.6em;
+      border-radius: 3px;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    
+    .endpoint-url {
+      font-family: 'Courier New', monospace;
+      background-color: #111;
+      padding: 0.3em 0.6em;
+      border-radius: 3px;
+      flex-grow: 1;
+      margin: 0 1em;
+      overflow-x: auto;
+    }
+    
+    .code-block {
+      background-color: #111;
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 1em;
+      margin: 1em 0;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+      position: relative;
+    }
+    
+    .code-block pre {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    
+    .copy-btn {
+      position: absolute;
+      top: 0.5em;
+      left: 0.5em;
+      background-color: #333;
+      color: #ccc;
+      border: none;
+      border-radius: 3px;
+      padding: 0.3em 0.6em;
+      font-size: 0.8em;
+      cursor: pointer;
+    }
+    
+    .copy-btn:hover {
+      background-color: #ff0033;
+      color: white;
+    }
+    
+    .parameter-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+    }
+    
+    .parameter-table th, .parameter-table td {
+      padding: 0.75em;
+      text-align: right;
+      border-bottom: 1px solid #333;
+    }
+    
+    .parameter-table th {
+      background-color: #111;
+      color: #ff0033;
+    }
+    
+    .parameter-table tr:hover {
+      background-color: rgba(255, 0, 51, 0.05);
+    }
+    
+    .parameter-type {
+      font-family: 'Courier New', monospace;
+      background-color: #111;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    
+    .required-badge {
+      background-color: #ff0033;
+      color: white;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.8em;
+      margin-right: 0.5em;
+    }
+    
+    .optional-badge {
+      background-color: #333;
+      color: #ccc;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.8em;
+      margin-right: 0.5em;
+    }
+    
+    .api-tester {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    
+    .api-tester h4 {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+    
+    .api-tester textarea {
+      width: 100%;
+      height: 150px;
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 0.5em;
+      font-family: 'Courier New', monospace;
+      margin-bottom: 1em;
+    }
+    
+    .api-tester button {
+      background-color: #ff0033;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5em 1em;
+      cursor: pointer;
+    }
+    
+    .api-tester button:hover {
+      background-color: #cc0000;
+    }
+    
+    .response-container {
+      background-color: #111;
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 1em;
+      margin-top: 1em;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
+    <h1>خادم API</h1>
+    <p>واجهة برمجة التطبيقات للنماذج المحلية</p>
+  </header>
+
+  <nav>
+    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+  </nav>
+
+  <main class="container">
+    <h2>خادم API للنماذج المحلية</h2>
+    <p>يوفر خادم API واجهة برمجية متوافقة مع OpenAI للتفاعل مع نماذج الذكاء الاصطناعي المحلية. يمكنك استخدام هذه الواجهة لدمج النماذج المحلية في تطبيقاتك.</p>
+    
+    <div class="api-section">
+      <h3>بدء تشغيل خادم API</h3>
+      <p>لتشغيل خادم API المحلي، اتبع الخطوات التالية:</p>
+      
+      <ol>
+        <li>تأكد من تثبيت llama-cpp-python كما هو موضح في <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a></li>
+        <li>قم بتشغيل الخادم باستخدام الأمر التالي:</li>
+      </ol>
+      
+      <div class="code-block">
+        <pre>python -m llama_cpp.server --model path/to/model.gguf --host 127.0.0.1 --port 8000</pre>
+        <button class="copy-btn">نسخ</button>
+      </div>
+      
+      <p>بعد تشغيل الخادم، يمكنك الوصول إلى واجهة API على العنوان: <code>http://127.0.0.1:8000/</code></p>
+    </div>
+    
+    <div class="api-section">
+      <h3>نقاط النهاية (Endpoints)</h3>
+      <p>يوفر خادم API النقاط التالية:</p>
+      
+      <div class="endpoint">
+        <div class="endpoint-header">
+          <span class="endpoint-method">POST</span>
+          <span class="endpoint-url">/v1/completions</span>
+        </div>
+        <p>إنشاء إكمال نصي للنص المعطى.</p>
+        
+        <h4>معلمات الطلب:</h4>
+        <table class="parameter-table">
+          <thead>
+            <tr>
+              <th>المعلمة</th>
+              <th>النوع</th>
+              <th>الوصف</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="required-badge">مطلوب</span> prompt</td>
+              <td><span class="parameter-type">string</span></td>
+              <td>النص المراد إكماله</td>
+            </tr>
+            <tr>
+              <td><span class="optional-badge">اختياري</span> max_tokens</td>
+              <td><span class="parameter-type">integer</span></td>
+              <td>الحد الأقصى لعدد الرموز في الإكمال (الافتراضي: 16)</td>
+            </tr>
+            <tr>
+              <td><span class="optional-badge">اختياري</span> temperature</td>
+              <td><span class="parameter-type">number</span></td>
+              <td>درجة العشوائية في الإكمال (0-2، الافتراضي: 0.8)</td>
+            </tr>
+            <tr>
+              <td><span class="optional-badge">اختياري</span> top_p</td>
+              <td><span class="parameter-type">number</span></td>
+              <td>احتمالية النواة المستخدمة في أخذ العينات (0-1، الافتراضي: 0.95)</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h4>مثال على الطلب:</h4>
+        <div class="code-block">
+          <pre>{
+  "prompt": "مرحباً، كيف حالك؟",
+  "max_tokens": 512,
+  "temperature": 0.7,
+  "top_p": 0.9
+}</pre>
+          <button class="copy-btn">نسخ</button>
+        </div>
+        
+        <h4>مثال على الاستجابة:</h4>
+        <div class="code-block">
+          <pre>{
+  "id": "cmpl-123456",
+  "object": "text_completion",
+  "created": 1677858242,
+  "model": "tinyllama.gguf",
+  "choices": [
+    {
+      "text": "مرحباً! أنا بخير، شكراً على سؤالك. كيف يمكنني مساعدتك اليوم؟",
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 5,
+    "completion_tokens": 15,
+    "total_tokens": 20
+  }
+}</pre>
+          <button class="copy-btn">نسخ</button>
+        </div>
+      </div>
+      
+      <div class="endpoint">
+        <div class="endpoint-header">
+          <span class="endpoint-method">POST</span>
+          <span class="endpoint-url">/v1/chat/completions</span>
+        </div>
+        <p>إنشاء إكمال محادثة للرسائل المعطاة.</p>
+        
+        <h4>معلمات الطلب:</h4>
+        <table class="parameter-table">
+          <thead>
+            <tr>
+              <th>المعلمة</th>
+              <th>النوع</th>
+              <th>الوصف</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="required-badge">مطلوب</span> messages</td>
+              <td><span class="parameter-type">array</span></td>
+              <td>مصفوفة من كائنات الرسائل، كل منها يحتوي على "role" و "content"</td>
+            </tr>
+            <tr>
+              <td><span class="optional-badge">اختياري</span> max_tokens</td>
+              <td><span class="parameter-type">integer</span></td>
+              <td>الحد الأقصى لعدد الرموز في الإكمال (الافتراضي: 16)</td>
+            </tr>
+            <tr>
+              <td><span class="optional-badge">اختياري</span> temperature</td>
+              <td><span class="parameter-type">number</span></td>
+              <td>درجة العشوائية في الإكمال (0-2، الافتراضي: 0.8)</td>
+            </tr>
+            <tr>
+              <td><span class="optional-badge">اختياري</span> top_p</td>
+              <td><span class="parameter-type">number</span></td>
+              <td>احتمالية النواة المستخدمة في أخذ العينات (0-1، الافتراضي: 0.95)</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h4>مثال على الطلب:</h4>
+        <div class="code-block">
+          <pre>{
+  "messages": [
+    {"role": "system", "content": "أنت مساعد مفيد."},
+    {"role": "user", "content": "ما هو الذكاء الاصطناعي؟"}
+  ],
+  "max_tokens": 512,
+  "temperature": 0.7
+}</pre>
+          <button class="copy-btn">نسخ</button>
+        </div>
+        
+        <h4>مثال على الاستجابة:</h4>
+        <div class="code-block">
+          <pre>{
+  "id": "chatcmpl-123456",
+  "object": "chat.completion",
+  "created": 1677858242,
+  "model": "tinyllama.gguf",
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "الذكاء الاصطناعي هو فرع من علوم الحاسوب يهتم بتطوير أنظمة قادرة على أداء مهام تتطلب عادةً ذكاءً بشرياً. يشمل ذلك التعلم، التفكير، حل المشكلات، فهم اللغة الطبيعية، والتعرف على الأنماط."
+      },
+      "finish_reason": "stop",
+      "index": 0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 20,
+    "completion_tokens": 40,
+    "total_tokens": 60
+  }
+}</pre>
+          <button class="copy-btn">نسخ</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="api-section">
+      <h3>اختبار API</h3>
+      <p>يمكنك استخدام النموذج أدناه لاختبار طلبات API:</p>
+      
+      <div class="api-tester">
+        <h4>إرسال طلب إلى /v1/completions</h4>
+        <textarea id="request-body">{
+  "prompt": "مرحباً، كيف حالك؟",
+  "max_tokens": 512,
+  "temperature": 0.7,
+  "top_p": 0.9
+}</textarea>
+        <button id="send-request">إرسال الطلب</button>
+        
+        <div id="response-container" class="response-container" style="display: none;"></div>
+      </div>
+    </div>
+    
+    <div class="api-section">
+      <h3>دمج API في تطبيقاتك</h3>
+      <p>يمكنك دمج واجهة API المحلية في تطبيقاتك باستخدام أي لغة برمجة تدعم طلبات HTTP. إليك بعض الأمثلة:</p>
+      
+      <h4>JavaScript (Fetch API):</h4>
+      <div class="code-block">
+        <pre>async function generateCompletion(prompt) {
+  const response = await fetch('http://localhost:8000/v1/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      prompt: prompt,
+      max_tokens: 512,
+      temperature: 0.7,
+    }),
+  });
+  
+  const data = await response.json();
+  return data.choices[0].text;
+}
+
+// استخدام الدالة
+generateCompletion('مرحباً، كيف حالك؟')
+  .then(text => console.log(text))
+  .catch(error => console.error('Error:', error));</pre>
+        <button class="copy-btn">نسخ</button>
+      </div>
+      
+      <h4>Python (Requests):</h4>
+      <div class="code-block">
+        <pre>import requests
+
+def generate_completion(prompt):
+    response = requests.post(
+        'http://localhost:8000/v1/completions',
+        json={
+            'prompt': prompt,
+            'max_tokens': 512,
+            'temperature': 0.7,
+        }
+    )
+    data = response.json()
+    return data['choices'][0]['text']
+
+# استخدام الدالة
+text = generate_completion('مرحباً، كيف حالك؟')
+print(text)</pre>
+        <button class="copy-btn">نسخ</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>تابع عبدالعزيز:</p>
+    <p>
+      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+      <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
+      <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
+    </p>
+    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="https://omanaq.github.io/CyberAI.Weep/../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // إضافة أزرار نسخ لكتل الكود
+      const codeBlocks = document.querySelectorAll('.code-block');
+      
+      codeBlocks.forEach(block => {
+        const copyButton = block.querySelector('.copy-btn');
+        
+        copyButton.addEventListener('click', () => {
+          const code = block.querySelector('pre').textContent;
+          
+          navigator.clipboard.writeText(code)
+            .then(() => {
+              copyButton.textContent = 'تم النسخ!';
+              setTimeout(() => {
+                copyButton.textContent = 'نسخ';
+              }, 2000);
+            })
+            .catch(err => {
+              console.error('فشل في نسخ النص: ', err);
+            });
+        });
+      });
+      
+      // اختبار API
+      const sendRequestBtn = document.getElementById('send-request');
+      const requestBody = document.getElementById('request-body');
+      const responseContainer = document.getElementById('response-container');
+      
+      sendRequestBtn.addEventListener('click', function() {
+        // محاكاة إرسال طلب API
+        responseContainer.style.display = 'block';
+        responseContainer.textContent = 'جاري إرسال الطلب...';
+        
+        setTimeout(function() {
+          try {
+            // التحقق من صحة JSON
+            const jsonBody = JSON.parse(requestBody.value);
+            
+            // محاكاة استجابة
+            const response = {
+              id: 'cmpl-' + Math.floor(Math.random() * 1000000),
+              object: 'text_completion',
+              created: Math.floor(Date.now() / 1000),
+              model: 'tinyllama.gguf',
+              choices: [
+                {
+                  text: 'هذه استجابة محاكاة. في التطبيق الحقيقي، ستحصل على استجابة من النموذج المحلي. ' + 
+                        'تأكد من تشغيل خادم API المحلي على العنوان المحدد.',
+                  index: 0,
+                  logprobs: null,
+                  finish_reason: 'stop'
+                }
+              ],
+              usage: {
+                prompt_tokens: jsonBody.prompt ? jsonBody.prompt.length / 4 : 0,
+                completion_tokens: 30,
+                total_tokens: (jsonBody.prompt ? jsonBody.prompt.length / 4 : 0) + 30
+              }
+            };
+            
+            responseContainer.textContent = JSON.stringify(response, null, 2);
+          } catch (error) {
+            responseContainer.textContent = 'خطأ: ' + error.message;
+          }
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>

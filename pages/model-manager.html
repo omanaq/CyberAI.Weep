@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة النماذج | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/../style.css">
+  <style>
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 2em 0;
+    }
+    
+    .model-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.5em;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+    
+    .model-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 0, 51, 0.3);
+    }
+    
+    .model-card.installed {
+      border-color: #ff0033;
+    }
+    
+    .model-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1em;
+    }
+    
+    .model-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      margin-left: 1em;
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: #ff0033;
+    }
+    
+    .model-title h3 {
+      margin: 0;
+      color: #ff0033;
+    }
+    
+    .model-title .model-size {
+      font-size: 0.8em;
+      color: #999;
+    }
+    
+    .model-description {
+      margin-bottom: 1em;
+      flex-grow: 1;
+    }
+    
+    .model-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 1em;
+    }
+    
+    .model-spec {
+      background-color: rgba(255, 0, 51, 0.1);
+      border: 1px solid #ff0033;
+      border-radius: 15px;
+      padding: 5px 10px;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+    
+    .model-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .model-actions button {
+      flex: 1;
+      padding: 0.5em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .download-btn {
+      background-color: #ff0033;
+      color: white;
+    }
+    
+    .download-btn:hover {
+      background-color: #cc0000;
+    }
+    
+    .manage-btn {
+      background-color: #333;
+      color: white;
+    }
+    
+    .manage-btn:hover {
+      background-color: #555;
+    }
+    
+    .model-status {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1em;
+    }
+    
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-left: 0.5em;
+    }
+    
+    .status-installed {
+      background-color: #0f0;
+    }
+    
+    .status-not-installed {
+      background-color: #999;
+    }
+    
+    .progress-bar {
+      height: 5px;
+      background-color: #333;
+      border-radius: 5px;
+      margin-top: 0.5em;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background-color: #ff0033;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+    
+    .filter-bar select, .filter-bar input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #111;
+      color: #fff;
+    }
+    
+    .filter-bar button {
+      padding: 8px 15px;
+      background-color: #ff0033;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .filter-bar button:hover {
+      background-color: #cc0000;
+    }
+    
+    .model-details {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.5em;
+      margin-bottom: 2em;
+    }
+    
+    .model-details h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+    
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .detail-item {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 1em;
+    }
+    
+    .detail-item h4 {
+      margin-top: 0;
+      color: #ff0033;
+      margin-bottom: 0.5em;
+    }
+    
+    .detail-item p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="Logo" width="80">
+    <h1>إدارة النماذج</h1>
+    <p>تنزيل وإدارة نماذج الذكاء الاصطناعي المحلية</p>
+  </header>
+
+  <nav>
+    <a href="https://omanaq.github.io/CyberAI.Weep/../index.html">الرئيسية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/local-models.html">النماذج المحلية</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/setup-guide.html">دليل الإعداد</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface.html">واجهة الدردشة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/chat-interface-advanced.html">واجهة الدردشة المتقدمة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-server.html">خادم API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/api-key-management.html">مفاتيح API</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/model-manager.html">إدارة النماذج</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/tools.html">أدوات مساعدة</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/about.html">من نحن</a>
+    <a href="https://omanaq.github.io/CyberAI.Weep/contact.html">اتصل بنا</a>
+  </nav>
+
+  <main class="container">
+    <h2>إدارة نماذج الذكاء الاصطناعي المحلية</h2>
+    <p>يمكنك تنزيل وإدارة نماذج الذكاء الاصطناعي المحلية من هذه الصفحة. اختر النموذج المناسب لجهازك واحتياجاتك.</p>
+    
+    <div class="filter-bar">
+      <select id="size-filter">
+        <option value="all">جميع الأحجام</option>
+        <option value="small">صغير (< 1GB)</option>
+        <option value="medium">متوسط (1-5GB)</option>
+        <option value="large">كبير (> 5GB)</option>
+      </select>
+      
+      <select id="status-filter">
+        <option value="all">جميع الحالات</option>
+        <option value="installed">مثبت</option>
+        <option value="not-installed">غير مثبت</option>
+      </select>
+      
+      <input type="text" id="search-input" placeholder="بحث...">
+      <button id="search-btn">بحث</button>
+    </div>
+    
+    <div class="models-grid" id="models-grid">
+      <!-- سيتم إضافة بطاقات النماذج هنا عن طريق JavaScript -->
+    </div>
+    
+    <div class="model-details" id="model-details" style="display: none;">
+      <h3 id="detail-model-name">اسم النموذج</h3>
+      
+      <div class="details-grid">
+        <div class="detail-item">
+          <h4>معلومات عامة</h4>
+          <p><strong>الحجم:</strong> <span id="detail-size">-</span></p>
+          <p><strong>التكميم:</strong> <span id="detail-quantization">-</span></p>
+          <p><strong>المسار:</strong> <span id="detail-path">-</span></p>
+        </div>
+        
+        <div class="detail-item">
+          <h4>متطلبات النظام</h4>
+          <p><strong>الذاكرة المطلوبة:</strong> <span id="detail-memory">-</span></p>
+          <p><strong>وحدة المعالجة:</strong> <span id="detail-cpu">-</span></p>
+          <p><strong>مساحة التخزين:</strong> <span id="detail-storage">-</span></p>
+        </div>
+        
+        <div class="detail-item">
+          <h4>الأداء</h4>
+          <p><strong>سرعة الاستجابة:</strong> <span id="detail-speed">-</span></p>
+          <p><strong>دقة النتائج:</strong> <span id="detail-accuracy">-</span></p>
+          <p><strong>دعم اللغة العربية:</strong> <span id="detail-arabic">-</span></p>
+        </div>
+        
+        <div class="detail-item">
+          <h4>الإجراءات</h4>
+          <div class="model-actions">
+            <button id="detail-download-btn" class="download-btn">تنزيل</button>
+            <button id="detail-delete-btn" class="manage-btn">حذف</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>تابع عبدالعزيز:</p>
+    <p>
+      <a href="https://www.snapchat.com/add/bx90_9" target="_blank">Snapchat</a> |
+      <a href="https://www.instagram.com/3zooo6" target="_blank">Instagram</a> |
+      <a href="https://omanaq.github.io/CyberAI.Weep/mailto:abdulzizsaleme@gmail.com">Email</a>
+    </p>
+    <p>© 2025 عبدالعزيز - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="https://omanaq.github.io/CyberAI.Weep/../js/database.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      // تهيئة قاعدة البيانات
+      const db = new CyberAIDatabase();
+      await db.open();
+      
+      // عناصر واجهة المستخدم
+      const modelsGrid = document.getElementById('models-grid');
+      const modelDetails = document.getElementById('model-details');
+      const detailModelName = document.getElementById('detail-model-name');
+      const detailSize = document.getElementById('detail-size');
+      const detailQuantization = document.getElementById('detail-quantization');
+      const detailPath = document.getElementById('detail-path');
+      const detailMemory = document.getElementById('detail-memory');
+      const detailCpu = document.getElementById('detail-cpu');
+      const detailStorage = document.getElementById('detail-storage');
+      const detailSpeed = document.getElementById('detail-speed');
+      const detailAccuracy = document.getElementById('detail-accuracy');
+      const detailArabic = document.getElementById('detail-arabic');
+      const detailDownloadBtn = document.getElementById('detail-download-btn');
+      const detailDeleteBtn = document.getElementById('detail-delete-btn');
+      const sizeFilter = document.getElementById('size-filter');
+      const statusFilter = document.getElementById('status-filter');
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      
+      // الحصول على النماذج من قاعدة البيانات
+      const models = await db.getModels();
+      
+      // عرض النماذج
+      function renderModels(modelsToRender) {
+        modelsGrid.innerHTML = '';
+        
+        modelsToRender.forEach(model => {
+          const modelCard = document.createElement('div');
+          modelCard.className = `model-card ${model.installed ? 'installed' : ''}`;
+          modelCard.dataset.id = model.id;
+          
+          modelCard.innerHTML = `
+            <div class="model-header">
+              <div class="model-icon">🤖</div>
+              <div class="model-title">
+                <h3>${model.name}</h3>
+                <div class="model-size">${model.size}</div>
+              </div>
+            </div>
+            
+            <div class="model-status">
+              <div class="status-indicator ${model.installed ? 'status-installed' : 'status-not-installed'}"></div>
+              <span>${model.installed ? 'مثبت' : 'غير مثبت'}</span>
+            </div>
+            
+            <div class="model-description">${model.description}</div>
+            
+            <div class="model-specs">
+              <div class="model-spec">التكميم: ${model.quantization}</div>
+              <div class="model-spec">الحجم: ${model.size}</div>
+            </div>
+            
+            <div class="model-actions">
+              ${model.installed ? 
+                `<button class="manage-btn" data-action="manage" data-id="${model.id}">إدارة</button>` : 
+                `<button class="download-btn" data-action="download" data-id="${model.id}">تنزيل</button>`
+              }
+              <button class="manage-btn" data-action="details" data-id="${model.id}">تفاصيل</button>
+            </div>
+          `;
+          
+          modelsGrid.appendChild(modelCard);
+        });
+        
+        // إذا لم تكن هناك نماذج
+        if (modelsToRender.length === 0) {
+          modelsGrid.innerHTML = '<p>لا توجد نماذج تطابق معايير البحث.</p>';
+        }
+      }
+      
+      // عرض تفاصيل النموذج
+      function showModelDetails(modelId) {
+        const model = models.find(m => m.id === modelId);
+        if (!model) return;
+        
+        detailModelName.textContent = model.name;
+        detailSize.textContent = model.size;
+        detailQuantization.textContent = model.quantization;
+        detailPath.textContent = model.path;
+        
+        // معلومات إضافية (محاكاة)
+        detailMemory.textContent = model.id === 'tinyllama' ? '2GB' : '8GB';
+        detailCpu.textContent = model.id === 'tinyllama' ? 'متوسط' : 'متعدد النواة';
+        detailStorage.textContent = model.size;
+        
+        detailSpeed.textContent = model.id === 'tinyllama' ? 'سريع' : 'متوسط';
+        detailAccuracy.textContent = model.id === 'tinyllama' ? 'متوسطة' : 'عالية';
+        detailArabic.textContent = 'نعم';
+        
+        // تحديث أزرار الإجراءات
+        if (model.installed) {
+          detailDownloadBtn.textContent = 'تحديث';
+          detailDeleteBtn.style.display = 'block';
+        } else {
+          detailDownloadBtn.textContent = 'تنزيل';
+          detailDeleteBtn.style.display = 'none';
+        }
+        
+        // تخزين معرف النموذج في الأزرار
+        detailDownloadBtn.dataset.id = model.id;
+        detailDeleteBtn.dataset.id = model.id;
+        
+        // عرض قسم التفاصيل
+        modelDetails.style.display = 'block';
+        
+        // التمرير إلى قسم التفاصيل
+        modelDetails.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // تنزيل النموذج
+      async function downloadModel(modelId) {
+        const model = models.find(m => m.id === modelId);
+        if (!model) return;
+        
+        // إنشاء بطاقة النموذج للتحديث
+        const modelCard = document.querySelector(`.model-card[data-id="${modelId}"]`);
+        
+        // إضافة شريط التقدم
+        const progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+        progressBar.innerHTML = '<div class="progress-fill"></div>';
+        
+        // إضافة شريط التقدم إلى بطاقة النموذج
+        if (modelCard) {
+          const actionsDiv = modelCard.querySelector('.model-actions');
+          modelCard.insertBefore(progressBar, actionsDiv);
+        }
+        
+        // محاكاة التنزيل
+        let progress = 0;
+        const progressFill = progressBar.querySelector('.progress-fill');
+        
+        const interval = setInterval(() => {
+          progress += 5;
+          progressFill.style.width = `${progress}%`;
+          
+          if (progress >= 100) {
+            clearInterval(interval);
+            
+            // تحديث حالة النموذج في قاعدة البيانات
+            db.updateModelInstallation(modelId, true);
+            
+            // تحديث النموذج في المصفوفة المحلية
+            const modelIndex = models.findIndex(m => m.id === modelId);
+            if (modelIndex !== -1) {
+              models[modelIndex].installed = true;
+            }
+            
+            // إعادة عرض النماذج
+            renderModels(models);
+            
+            // تحديث تفاصيل النموذج إذا كانت معروضة
+            if (modelDetails.style.display !== 'none' && detailDownloadBtn.dataset.id === modelId) {
+              showModelDetails(modelId);
+            }
+            
+            alert(`تم تنزيل النموذج ${model.name} بنجاح!`);
+          }
+        }, 100);
+      }
+      
+      // حذف النموذج
+      async function deleteModel(modelId) {
+        const model = models.find(m => m.id === modelId);
+        if (!model) return;
+        
+        if (confirm(`هل أنت متأكد من حذف النموذج ${model.name}؟`)) {
+          // تحديث حالة النموذج في قاعدة البيانات
+          db.updateModelInstallation(modelId, false);
+          
+          // تحديث النموذج في المصفوفة المحلية
+          const modelIndex = models.findIndex(m => m.id === modelId);
+          if (modelIndex !== -1) {
+            models[modelIndex].installed = false;
+          }
+          
+          // إعادة عرض النماذج
+          renderModels(models);
+          
+          // تحديث تفاصيل النموذج إذا كانت معروضة
+          if (modelDetails.style.display !== 'none' && detailDeleteBtn.dataset.id === modelId) {
+            showModelDetails(modelId);
+          }
+          
+          alert(`تم حذف النموذج ${model.name} بنجاح!`);
+        }
+      }
+      
+      // تصفية النماذج
+      function filterModels() {
+        const sizeValue = sizeFilter.value;
+        const statusValue = statusFilter.value;
+        const searchTerm = searchInput.value.toLowerCase();
+        
+        const filteredModels = models.filter(model => {
+          // تصفية الحجم
+          if (sizeValue !== 'all') {
+            if (sizeValue === 'small' && !model.size.includes('400MB') && !model.size.includes('1GB')) return false;
+            if (sizeValue === 'medium' && !model.size.includes('4GB') && !model.size.includes('1.5GB')) return false;
+            if (sizeValue === 'large' && !model.size.includes('7GB') && !model.size.includes('13GB')) return false;
+          }
+          
+          // تصفية الحالة
+          if (statusValue !== 'all') {
+            if (statusValue === 'installed' && !model.installed) return false;
+            if (statusValue === 'not-installed' && model.installed) return false;
+          }
+          
+          // تصفية البحث
+          if (searchTerm !== '') {
+            return model.name.toLowerCase().includes(searchTerm) || 
+                   model.description.toLowerCase().includes(searchTerm);
+          }
+          
+          return true;
+        });
+        
+        renderModels(filteredModels);
+      }
+      
+      // أحداث النقر
+      modelsGrid.addEventListener('click', function(e) {
+        const button = e.target.closest('button');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const modelId = button.dataset.id;
+        
+        if (action === 'download') {
+          downloadModel(modelId);
+        } else if (action === 'manage' || action === 'details') {
+          showModelDetails(modelId);
+        }
+      });
+      
+      detailDownloadBtn.addEventListener('click', function() {
+        const modelId = this.dataset.id;
+        downloadModel(modelId);
+      });
+      
+      detailDeleteBtn.addEventListener('click', function() {
+        const modelId = this.dataset.id;
+        deleteModel(modelId);
+      });
+      
+      // أحداث التصفية
+      searchBtn.addEventListener('click', filterModels);
+      searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+          filterModels();
+        }
+      });
+      
+      sizeFilter.addEventListener('change', filterModels);
+      statusFilter.addEventListener('change', filterModels);
+      
+      // عرض النماذج الأولي
+      renderModels(models);
+    });
+  </script>
+</body>
+</html>

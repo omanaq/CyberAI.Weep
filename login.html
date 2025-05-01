@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | CyberAI OS</title>
+  <link rel="stylesheet" href="https://omanaq.github.io/CyberAI.Weep/style.css">
+  <style>
+    body {
+      background-image: url('CyberAI-weep-main/bg_template.webp');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .login-container {
+      background-color: rgba(0, 0, 0, 0.85);
+      border: 2px solid #ff0033;
+      border-radius: 15px;
+      padding: 2em;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(255, 0, 51, 0.5);
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+    
+    .login-header img {
+      width: 100px;
+      margin-bottom: 1em;
+    }
+    
+    .login-header h1 {
+      color: #ff0033;
+      margin: 0;
+      font-size: 1.8em;
+    }
+    
+    .login-header p {
+      color: #d4af37; /* Gold color */
+      margin-top: 0.5em;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5em;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5em;
+      color: #d4af37;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 0.8em;
+      background-color: rgba(30, 30, 30, 0.8);
+      border: 1px solid #333;
+      border-radius: 5px;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus {
+      border-color: #ff0033;
+      outline: none;
+    }
+    
+    .login-btn {
+      background-color: #ff0033;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.8em;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .login-btn:hover {
+      background-color: #cc0000;
+    }
+    
+    .login-options {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1em;
+      font-size: 0.9em;
+    }
+    
+    .login-options a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+    
+    .login-options a:hover {
+      text-decoration: underline;
+    }
+    
+    .register-link {
+      text-align: center;
+      margin-top: 2em;
+      color: #ccc;
+    }
+    
+    .register-link a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+    
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .social-login {
+      margin-top: 2em;
+      text-align: center;
+    }
+    
+    .social-login p {
+      color: #ccc;
+      margin-bottom: 1em;
+    }
+    
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: transform 0.3s;
+    }
+    
+    .social-btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <img src="https://omanaq.github.io/CyberAI.Weep/logo.png" alt="CyberAI OS Logo">
+      <h1>CyberAI OS</h1>
+      <p>نظام النماذج المحلية للذكاء الاصطناعي</p>
+    </div>
+    
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">اسم المستخدم أو البريد الإلكتروني</label>
+        <input type="text" id="username" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" required>
+      </div>
+      
+      <button type="submit" class="login-btn">تسجيل الدخول</button>
+      
+      <div class="login-options">
+        <label>
+          <input type="checkbox" id="remember"> تذكرني
+        </label>
+        <a href="https://omanaq.github.io/CyberAI.Weep/#">نسيت كلمة المرور؟</a>
+      </div>
+    </form>
+    
+    <div class="register-link">
+      ليس لديك حساب؟ <a href="https://omanaq.github.io/CyberAI.Weep/#">إنشاء حساب جديد</a>
+    </div>
+    
+    <div class="social-login">
+      <p>أو سجل الدخول باستخدام</p>
+      <div class="social-buttons">
+        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="social-btn">G</a>
+        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="social-btn">f</a>
+        <a href="https://omanaq.github.io/CyberAI.Weep/#" class="social-btn">in</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('login-form');
+      
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // للتجربة، نقبل أي اسم مستخدم وكلمة مرور
+        // في التطبيق الحقيقي، هنا سيتم التحقق من صحة بيانات الدخول
+        
+        if (username === 'admin' && password === 'admin') {
+          // المستخدم الرئيسي - عبدالعزيز
+          localStorage.setItem('user', JSON.stringify({
+            name: 'عبدالعزيز',
+            role: 'admin',
+            apiKey: 'sk_cyberai_abdulaziz_unlimited_' + generateRandomString(16),
+            keyType: 'unlimited'
+          }));
+        } else {
+          // مستخدم عادي
+          localStorage.setItem('user', JSON.stringify({
+            name: username,
+            role: 'user',
+            apiKey: 'sk_cyberai_free_' + generateRandomString(16),
+            keyType: 'free',
+            usageLimit: 900,
+            usageCount: 0
+          }));
+        }
+        
+        // توجيه المستخدم إلى الصفحة الرئيسية
+        window.location.href = 'index.html';
+      });
+      
+      // توليد سلسلة عشوائية
+      function generateRandomString(length) {
+        const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        
+        for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        
+        return result;
+      }
+      
+      // التحقق مما إذا كان المستخدم مسجل الدخول بالفعل
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
